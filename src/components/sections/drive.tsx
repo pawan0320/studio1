@@ -17,12 +17,7 @@ export default function DriveSection() {
         </CardDescription>
       </CardHeader>
       <CardContent className="flex-grow flex items-center justify-center">
-        <Button asChild size="lg" className="w-full glow-primary">
-          <a href="#" target="_blank" rel="noopener noreferrer">
-            <DownloadCloud className="mr-2 h-5 w-5" />
-            Open Google Drive
-          </a>
-        </Button>
+        <p className="text-muted-foreground italic">Link to be provided soon.</p>
       </CardContent>
     </Card>
   );
