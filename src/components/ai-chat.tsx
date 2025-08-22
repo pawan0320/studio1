@@ -2,10 +2,9 @@
 
 import { useState, useRef, useEffect, type FormEvent } from 'react';
 import { Bot, User, CornerDownLeft, Loader2 } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { getToolSuggestion } from '@/app/actions';
+import { getPortfolioAnswer } from '@/app/actions';
 import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
 
@@ -15,7 +14,12 @@ interface Message {
 }
 
 export default function AIChat() {
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [messages, setMessages] = useState<Message[]>([
+    {
+        role: 'assistant',
+        content: "Hi there! I'm Pawan's AI assistant. Ask me anything about his skills, projects, or background."
+    }
+  ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
@@ -37,12 +41,12 @@ export default function AIChat() {
     setIsLoading(true);
 
     try {
-      const result = await getToolSuggestion({ problemDescription: input });
+      const result = await getPortfolioAnswer({ query: input });
 
       if (result.success && result.data) {
         const assistantMessage: Message = {
           role: 'assistant',
-          content: result.data.suggestedTools,
+          content: result.data.answer,
         };
         setMessages((prev) => [...prev, assistantMessage]);
       } else {
@@ -74,15 +78,8 @@ export default function AIChat() {
   };
 
   return (
-    <Card className="max-w-3xl mx-auto bg-card border-primary/20 glow-primary shadow-2xl shadow-primary/10">
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2 font-headline text-xl text-glow-primary">
-          <Bot />
-          AI Tool Suggester
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="h-96 overflow-y-auto space-y-4 pr-4 border-b border-primary/10 mb-4">
+    <div className="flex flex-col h-full bg-transparent">
+        <div className="flex-1 overflow-y-auto space-y-4 p-4">
           {messages.map((msg, index) => (
             <div
               key={index}
@@ -125,13 +122,13 @@ export default function AIChat() {
           )}
           <div ref={messagesEndRef} />
         </div>
-        <form onSubmit={handleSubmit} className="flex items-center gap-2">
+        <form onSubmit={handleSubmit} className="flex items-center gap-2 p-4 border-t border-primary/20">
           <Input
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="e.g., How can I prevent SQL injection?"
+            placeholder="Ask about projects..."
             disabled={isLoading}
-            className="flex-1 bg-background/50 focus:border-primary border-primary/50"
+            className="bg-background/50 focus:border-primary border-primary/50"
           />
           <Button type="submit" disabled={isLoading} className="glow-primary">
             {isLoading ? (
@@ -142,7 +139,6 @@ export default function AIChat() {
             <span className="sr-only">Send</span>
           </Button>
         </form>
-      </CardContent>
-    </Card>
+    </div>
   );
 }

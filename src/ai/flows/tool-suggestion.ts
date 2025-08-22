@@ -1,53 +1,53 @@
 'use server';
 
 /**
- * @fileOverview AI chatbot assistant to suggest relevant AI/ML tools or approaches for a given problem.
+ * @fileOverview AI chatbot assistant to answer questions about Pawan Sai Kodali.
  *
- * - suggestTools - A function that takes a problem description and returns suggested tools.
- * - ToolSuggestionInput - The input type for the suggestTools function.
- * - ToolSuggestionOutput - The return type for the suggestTools function.
+ * - answerQuery - A function that takes a user query and returns an answer.
+ * - PortfolioQueryInput - The input type for the answerQuery function.
+ * - PortfolioQueryOutput - The return type for the answerQuery function.
  */
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 
-const ToolSuggestionInputSchema = z.object({
-  problemDescription: z
+const PortfolioQueryInputSchema = z.object({
+  query: z
     .string()
-    .describe('A description of the programming or security problem the user is facing.'),
+    .describe('A user\'s question about Pawan Sai Kodali\'s skills, projects, resume, or background.'),
 });
-export type ToolSuggestionInput = z.infer<typeof ToolSuggestionInputSchema>;
+export type PortfolioQueryInput = z.infer<typeof PortfolioQueryInputSchema>;
 
-const ToolSuggestionOutputSchema = z.object({
-  suggestedTools: z
+const PortfolioQueryOutputSchema = z.object({
+  answer: z
     .string()
-    .describe('A list of relevant AI/ML tools or approaches that could help solve the problem.'),
+    .describe('An answer to the user\'s question.'),
 });
-export type ToolSuggestionOutput = z.infer<typeof ToolSuggestionOutputSchema>;
+export type PortfolioQueryOutput = z.infer<typeof PortfolioQueryOutputSchema>;
 
-export async function suggestTools(input: ToolSuggestionInput): Promise<ToolSuggestionOutput> {
-  return suggestToolsFlow(input);
+export async function answerQuery(input: PortfolioQueryInput): Promise<PortfolioQueryOutput> {
+  return portfolioQueryFlow(input);
 }
 
 const prompt = ai.definePrompt({
-  name: 'toolSuggestionPrompt',
-  input: {schema: ToolSuggestionInputSchema},
-  output: {schema: ToolSuggestionOutputSchema},
-  prompt: `You are an AI assistant that helps users find relevant AI/ML tools or approaches to solve their programming or security problems.
+  name: 'portfolioQueryPrompt',
+  input: {schema: PortfolioQueryInputSchema},
+  output: {schema: PortfolioQueryOutputSchema},
+  prompt: `You are Pawan Sai Kodali's AI assistant. Your goal is to answer questions about his skills, projects, resume, and educational background based on the information provided in this portfolio.
 
-  Consider Pawan Sai Kodali's projects when suggesting tools.
+  Keep your answers concise and helpful.
 
-  Problem Description: {{{problemDescription}}}
+  User's Question: {{{query}}}
 
-  Suggest relevant AI/ML tools or approaches:
+  Answer:
   `,
 });
 
-const suggestToolsFlow = ai.defineFlow(
+const portfolioQueryFlow = ai.defineFlow(
   {
-    name: 'suggestToolsFlow',
-    inputSchema: ToolSuggestionInputSchema,
-    outputSchema: ToolSuggestionOutputSchema,
+    name: 'portfolioQueryFlow',
+    inputSchema: PortfolioQueryInputSchema,
+    outputSchema: PortfolioQueryOutputSchema,
   },
   async input => {
     const {output} = await prompt(input);

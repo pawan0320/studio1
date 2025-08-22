@@ -6,7 +6,6 @@ import SecuritySection from '@/components/sections/security';
 import ProjectsSection from '@/components/sections/projects';
 import DriveSection from '@/components/sections/drive';
 import ContactSection from '@/components/sections/contact';
-import ChatbotSection from '@/components/sections/chatbot';
 
 export default function Home() {
   return (
@@ -17,7 +16,6 @@ export default function Home() {
         <SkillsSection />
         <SecuritySection />
         <ProjectsSection />
-        <ChatbotSection />
         <div className="container mx-auto px-4 py-16 md:py-24">
            <div className="grid gap-16 lg:grid-cols-2">
             <DriveSection />

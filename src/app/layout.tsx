@@ -1,6 +1,7 @@
 import type {Metadata} from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster"
+import ChatbotWidget from '@/components/layout/chatbot-widget';
 
 export const metadata: Metadata = {
   title: 'Pawan Sai Kodali | AI & Security Developer',
@@ -22,6 +23,7 @@ export default function RootLayout({
       </head>
       <body className="font-body antialiased">
         {children}
+        <ChatbotWidget />
         <Toaster />
       </body>
     </html>

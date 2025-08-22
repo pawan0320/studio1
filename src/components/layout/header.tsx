@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { BotIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
 
 const NAV_LINKS = [
   { href: '#skills', label: 'Skills' },
@@ -47,9 +46,6 @@ export default function Header() {
             </Link>
           ))}
         </nav>
-        <Button asChild variant="ghost" className="hidden md:flex">
-          <a href="#chatbot">AI Assistant</a>
-        </Button>
       </div>
     </header>
   );
