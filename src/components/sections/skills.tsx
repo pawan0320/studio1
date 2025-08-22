@@ -3,12 +3,6 @@ import { BrainCircuit, Code, Database, Server, Wind, Bot, Star, Shield, Cloud, L
 
 const skillsByCategory: { category: string; skills: { name: string; icon: LucideIcon }[] }[] = [
     {
-        category: 'AI/ML',
-        skills: [
-            { name: 'ML Fundamentals Certified', icon: Award },
-        ]
-    },
-    {
         category: 'Cloud',
         skills: [
             { name: 'AWS (EC2)', icon: Cloud },
@@ -54,8 +48,8 @@ const skillsByCategory: { category: string; skills: { name: string; icon: Lucide
 
 const pyramidStructure = [
     [skillsByCategory[0]],
-    [skillsByCategory[1], skillsByCategory[2]],
-    [skillsByCategory[3], skillsByCategory[4], skillsByCategory[5]],
+    [skillsByCategory[1]],
+    [skillsByCategory[2], skillsByCategory[3], skillsByCategory[4]],
 ];
 
 const SkillCard = ({ name, icon: Icon }: { name: string; icon: LucideIcon }) => (
