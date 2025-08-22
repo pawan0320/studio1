@@ -1,7 +1,7 @@
 
 'use client';
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { BrainCircuit, Briefcase, Cloud, Code, Database, Dna, Palette, Smartphone, Languages } from "lucide-react";
 
@@ -107,32 +107,22 @@ export default function SkillsSection() {
         </p>
       </div>
 
-      <div className="mt-16 space-y-12">
-        {SKILL_CATEGORIES.map(({ name, Icon, skills }) => (
-          <div key={name}>
-            <div className="flex items-center justify-center gap-4 mb-8">
-              <Icon className="h-8 w-8 text-primary text-glow-primary" />
-              <h3 className="font-headline text-2xl font-semibold text-center text-glow-primary tracking-wider">{name}</h3>
-            </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-6 justify-center">
-              {skills.map((tech) => (
-                <motion.div
-                  key={tech.alt}
-                  whileHover={{ scale: 1.1, rotateZ: 5 }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                  className="group"
-                >
-                  <Card className="h-full bg-card/50 border-accent/20 glow-accent shadow-lg shadow-accent/10 flex flex-col items-center justify-center p-4 aspect-square">
-                    <TechLogo path={tech.path} alt={tech.alt} />
-                    <p className="mt-2 text-sm text-center font-medium text-muted-foreground group-hover:text-accent transition-colors">
-                      {tech.alt}
-                    </p>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </div>
+      <div className="mt-16 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-6 justify-center">
+        {SKILL_CATEGORIES.flatMap(({ skills }) => skills).map((tech) => (
+          <motion.div
+            key={tech.alt}
+            whileHover={{ scale: 1.1, rotateZ: 5 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ type: "spring", stiffness: 300 }}
+            className="group"
+          >
+            <Card className="h-full bg-card/50 border-accent/20 glow-accent shadow-lg shadow-accent/10 flex flex-col items-center justify-center p-4 aspect-square">
+              <TechLogo path={tech.path} alt={tech.alt} />
+              <p className="mt-2 text-sm text-center font-medium text-muted-foreground group-hover:text-accent transition-colors">
+                {tech.alt}
+              </p>
+            </Card>
+          </motion.div>
         ))}
       </div>
     </section>
