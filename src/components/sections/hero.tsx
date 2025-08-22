@@ -18,12 +18,12 @@ export default function HeroSection() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/30 via-transparent to-transparent opacity-40"></div>
       </div>
 
-      <div className="relative z-10 text-center">
+      <div className="relative z-10 text-center px-4">
         <h1 className="font-headline text-5xl font-bold tracking-tighter text-glow-primary md:text-7xl lg:text-8xl">
           Pawan Sai Kodali
         </h1>
         <p className="mt-4 max-w-2xl mx-auto font-body text-lg text-muted-foreground md:text-xl">
-          Innovating at the Intersection of Artificial Intelligence and Cybersecurity
+          I’m a passionate Full-Stack Developer with experience in the MERN stack, AI-driven systems, and IoT projects. I’ve built real-time chat apps, intelligent robotics, and recognition platforms. Currently, I’m working on an Empowering Teacher Multi-Grade Class App and a Sign Language Recognition & Synthesis Software, focusing on building impactful and inclusive tech solutions.
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-4">
           <Button asChild size="lg" className="glow-primary">
