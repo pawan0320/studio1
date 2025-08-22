@@ -27,10 +27,14 @@ export default function HeroSection() {
           loop 
           muted 
           playsInline
-          className="absolute w-64 h-64 md:w-80 md:h-80 object-cover pulse"
+          className="absolute object-cover pulse"
           style={{
-            boxShadow: '0 0 20px 5px hsl(var(--primary) / 0.6), 0 0 50px 20px hsl(var(--accent) / 0.4)',
-            borderRadius: '50%',
+            width: '100vw',
+            height: '100vh',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            objectFit: 'cover',
           }}
           src="/blackhole.webm"
         >
