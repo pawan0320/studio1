@@ -23,10 +23,10 @@ export default function SecuritySection() {
           </p>
         </div>
 
-        <div className="relative h-[480px] w-full flex items-center justify-center">
-           <Lock className="h-32 w-32 text-primary text-glow-primary z-10" />
+        <div className="relative h-[300px] w-[300px] flex items-center justify-center">
+           <Lock className="h-24 w-24 text-primary text-glow-primary z-10" />
           {codeSnippets.map(({ code, style }, index) => (
-            <div key={index} className="absolute top-1/2 left-1/2 code-orbit z-20" style={style}>
+            <div key={index} className="absolute top-1/2 left-1/2 code-orbit z-0" style={style}>
               <code className="font-code text-sm text-accent text-glow-accent whitespace-nowrap p-2 rounded-md bg-background/50 backdrop-blur-sm">
                 {code}
               </code>
