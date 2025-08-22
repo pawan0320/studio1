@@ -6,35 +6,51 @@ import { ArrowRight } from "lucide-react";
 
 const projects = [
   {
-    title: "AI-Powered Threat Detection",
-    description: "A real-time system that uses machine learning models to detect and mitigate cybersecurity threats.",
+    title: "Healthcare Booking",
+    description: "A platform for booking healthcare appointments, with features for doctors and patients.",
     image: "https://placehold.co/600x400.png",
-    hint: "security server",
-    tags: ["Python", "TensorFlow", "Scikit-learn", "Flask"],
+    hint: "healthcare doctor",
+    tags: ["React", "Firebase", "Node.js"],
     link: "#",
   },
   {
-    title: "Secure Code Assistant",
-    description: "An intelligent chatbot that helps developers write more secure code by identifying vulnerabilities.",
+    title: "Brain Tumor Detection",
+    description: "An AI model that detects brain tumors from MRI scans with high accuracy.",
     image: "https://placehold.co/600x400.png",
-    hint: "code laptop",
-    tags: ["Next.js", "GenAI", "LangChain", "VectorDB"],
+    hint: "brain mri",
+    tags: ["Python", "TensorFlow", "Keras"],
     link: "#",
   },
   {
-    title: "Cloud Infrastructure Orchestrator",
-    description: "Automated provisioning and management of secure cloud environments using Infrastructure as Code.",
+    title: "IoT Smart Home",
+    description: "A system to control and monitor home appliances using IoT devices.",
     image: "https://placehold.co/600x400.png",
-    hint: "cloud infrastructure",
-    tags: ["Terraform", "Ansible", "AWS", "Docker"],
+    hint: "smart home",
+    tags: ["Raspberry Pi", "Python", "MQTT"],
     link: "#",
   },
   {
-    title: "Encrypted File Sharing Platform",
-    description: "A web application for sharing files with end-to-end encryption, ensuring data privacy and integrity.",
+    title: "AI Chess Bot",
+    description: "A chess engine that uses reinforcement learning to play against human players.",
     image: "https://placehold.co/600x400.png",
-    hint: "file sharing",
-    tags: ["React", "Node.js", "Cryptography", "MongoDB"],
+    hint: "chess game",
+    tags: ["Python", "Pygame", "AI"],
+    link: "#",
+  },
+  {
+    title: "Digital Twins",
+    description: "Creating a digital replica of physical assets for real-time monitoring and simulation.",
+    image: "https://placehold.co/600x400.png",
+    hint: "digital twin",
+    tags: ["IoT", "Azure", "Simulation"],
+    link: "#",
+  },
+  {
+    title: "Crop Recommendation",
+    description: "An AI-powered system that recommends crops based on soil and climate data.",
+    image: "https://placehold.co/600x400.png",
+    hint: "agriculture farm",
+    tags: ["Machine Learning", "Python", "Flask"],
     link: "#",
   },
 ];
@@ -43,12 +59,12 @@ export default function ProjectsSection() {
   return (
     <section id="projects" className="container mx-auto px-4 py-16 md:py-24">
       <div className="text-center">
-        <h2 className="font-headline text-4xl font-bold tracking-tighter text-glow-primary sm:text-5xl">My Creations</h2>
+        <h2 className="font-headline text-4xl font-bold tracking-tighter text-glow-primary sm:text-5xl">My Projects</h2>
         <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
           A selection of projects where I've turned complex problems into elegant solutions.
         </p>
       </div>
-      <div className="mt-12 grid gap-8 md:grid-cols-2">
+      <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {projects.map((project) => (
           <Link href={project.link} key={project.title} className="block group">
             <Card className="h-full bg-card border-primary/20 overflow-hidden tilt-card">
