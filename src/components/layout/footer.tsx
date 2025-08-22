@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 const SOCIAL_LINKS = [
   { href: 'https://github.com/pawan0320', icon: Github, label: 'GitHub' },
-  { href: 'https://linkedin.com', icon: Linkedin, label: 'LinkedIn' },
+  { href: 'https://www.linkedin.com/in/pawan-sai-kodali-4b6293287', icon: Linkedin, label: 'LinkedIn' },
   { href: 'https://twitter.com', icon: Twitter, label: 'Twitter' },
 ];
 
