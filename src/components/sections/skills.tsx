@@ -2,18 +2,23 @@ import { Card } from "@/components/ui/card";
 import { BrainCircuit, Code, Database, Server, Wind, Bot } from 'lucide-react';
 
 const skills = [
-  { name: 'Python', category: 'Languages & Frameworks' },
-  { name: 'JavaScript', category: 'Languages & Frameworks' },
-  { name: 'React/Next.js', category: 'Languages & Frameworks' },
-  { name: 'Node.js', category: 'Languages & Frameworks' },
-  { name: 'TensorFlow', category: 'AI & Machine Learning' },
-  { name: 'PyTorch', category: 'AI & Machine Learning' },
-  { name: 'Scikit-learn', category: 'AI & Machine Learning' },
-  { name: 'LLMs', category: 'AI & Machine Learning' },
-  { name: 'Docker', category: 'DevOps & Cloud' },
-  { name: 'Kubernetes', category: 'DevOps & Cloud' },
-  { name: 'AWS/GCP', category: 'DevOps & Cloud' },
-  { name: 'SQL/NoSQL', category: 'DevOps & Cloud' },
+  { name: 'Python', category: 'Languages' },
+  { name: 'Java', category: 'Languages' },
+  { name: 'C++', category: 'Languages' },
+  { name: 'JavaScript', category: 'Languages' },
+  { name: 'HTML5', category: 'Web' },
+  { name: 'CSS3', category: 'Web' },
+  { name: 'React.js', category: 'Web' },
+  { name: 'Node.js', category: 'Web' },
+  { name: 'Express.js', category: 'Web' },
+  { name: 'MySQL', category: 'Databases' },
+  { name: 'MongoDB', category: 'Databases' },
+  { name: 'SQLite', category: 'Databases' },
+  { name: 'Git', category: 'Tools' },
+  { name: 'Docker', category: 'Tools' },
+  { name: 'Jenkins', category: 'Tools' },
+  { name: 'GitHub', category: 'Tools' },
+  { name: 'AWS (EC2)', category: 'Cloud' },
 ];
 
 const SkillCard = ({ name }: { name: string }) => (
