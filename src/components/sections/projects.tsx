@@ -9,7 +9,7 @@ const projects = [
     description: "A modern and responsive website for a local coffee shop, featuring a menu, gallery, and contact information.",
     image: "https://placehold.co/600x400.png",
     hint: "coffee shop",
-    tags: ["React", "Next.js", "Tailwind CSS", "Vercel"],
+    tags: ["HTML", "CSS"],
     link: "#",
   },
   {
