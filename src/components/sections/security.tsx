@@ -1,4 +1,5 @@
 import { cn } from '@/lib/utils';
+import { Lock } from 'lucide-react';
 
 const codeSnippets = [
   { code: `import { secure } from 'crypto';`, style: { animationDelay: '0s' } },
@@ -15,7 +16,7 @@ export default function SecuritySection() {
   return (
     <section id="security" className="relative min-h-[60vh] w-full flex items-center justify-center overflow-hidden py-24">
       <div className="container mx-auto flex flex-col items-center justify-center">
-        <div className="text-center z-10 mb-16 px-4">
+        <div className="text-center z-20 mb-16 px-4">
           <h2 className="font-headline text-4xl font-bold tracking-tighter text-glow-primary sm:text-5xl">Fortified by Design</h2>
           <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
             Building high-performance systems with security at the core, not as an afterthought.
@@ -23,8 +24,9 @@ export default function SecuritySection() {
         </div>
 
         <div className="relative h-[480px] w-full flex items-center justify-center">
+           <Lock className="h-32 w-32 text-primary text-glow-primary z-10" />
           {codeSnippets.map(({ code, style }, index) => (
-            <div key={index} className="absolute top-1/2 left-1/2 code-orbit" style={style}>
+            <div key={index} className="absolute top-1/2 left-1/2 code-orbit z-20" style={style}>
               <code className="font-code text-sm text-accent text-glow-accent whitespace-nowrap p-2 rounded-md bg-background/50 backdrop-blur-sm">
                 {code}
               </code>
