@@ -106,9 +106,9 @@ export default function SkillsSection() {
         </p>
       </div>
 
-      <div className="mt-16 flex flex-col items-center gap-6">
+      <div className="mt-16 flex flex-col items-center gap-8">
         {pyramidRows.map((row, rowIndex) => (
-          <div key={rowIndex} className="flex justify-center gap-6 flex-wrap">
+          <div key={rowIndex} className="flex justify-center gap-8 flex-wrap">
             {row.map((tech) => (
                <motion.div
                 key={tech.alt}
