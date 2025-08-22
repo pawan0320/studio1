@@ -5,11 +5,11 @@ import Link from "next/link";
 
 const projects = [
   {
-    title: "Healthcare Booking Platform",
-    description: "A comprehensive platform for booking healthcare appointments, with dedicated features for both doctors and patients.",
+    title: "Brewed Awakening Coffee Shop Website",
+    description: "A modern and responsive website for a local coffee shop, featuring a menu, gallery, and contact information.",
     image: "https://placehold.co/600x400.png",
-    hint: "healthcare app",
-    tags: ["React", "Firebase", "Node.js", "System Design"],
+    hint: "coffee shop",
+    tags: ["React", "Next.js", "Tailwind CSS", "Vercel"],
     link: "#",
   },
   {
