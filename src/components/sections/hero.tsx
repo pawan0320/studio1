@@ -1,3 +1,4 @@
+
 import { Cpu, ShieldCheck, Database, Cloud, BrainCircuit, Code2, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { SiReact, SiJavascript, SiFirebase, SiAmazon, SiNodedotjs, SiPython } from '@icons-pack/react-simple-icons';
@@ -21,23 +22,20 @@ export default function HeroSection() {
 
       {/* Blackhole Video and Orbiting Icons */}
       <div className="relative w-96 h-96 flex items-center justify-center">
-        <div 
-          className="absolute w-64 h-64 md:w-80 md:h-80 pulse"
+        <video 
+          autoPlay 
+          loop 
+          muted 
+          playsInline
+          className="absolute w-64 h-64 md:w-80 md:h-80 object-cover pulse"
           style={{
             boxShadow: '0 0 20px 5px hsl(var(--primary) / 0.6), 0 0 50px 20px hsl(var(--accent) / 0.4)',
+            borderRadius: '50%',
           }}
+          src="/blackhole.webm"
         >
-          <video 
-            autoPlay 
-            loop 
-            muted 
-            playsInline
-            className="w-full h-full object-cover"
-            src="/blackhole.webm"
-          >
-            Your browser does not support the video tag.
-          </video>
-        </div>
+          Your browser does not support the video tag.
+        </video>
         {SKILL_ICONS.map(({ Icon, className, style }, index) => (
             <div key={index} className="absolute top-1/2 left-1/2 orbit" style={style}>
               <div className="w-12 h-12 bg-card/60 backdrop-blur-sm rounded-full flex items-center justify-center">
