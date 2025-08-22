@@ -1,4 +1,4 @@
-import { Cpu, ShieldCheck, Database, Cloud, BrainCircuit, Code2 } from 'lucide-react';
+import { Cpu, ShieldCheck, Database, Cloud, BrainCircuit, Code2, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const SKILL_ICONS = [
@@ -25,9 +25,15 @@ export default function HeroSection() {
         <p className="mt-4 max-w-2xl mx-auto font-body text-lg text-muted-foreground md:text-xl">
           Innovating at the Intersection of Artificial Intelligence and Cybersecurity
         </p>
-        <div className="mt-8 flex justify-center gap-4">
+        <div className="mt-8 flex flex-wrap justify-center gap-4">
           <Button asChild size="lg" className="glow-primary">
             <a href="#projects">View My Work</a>
+          </Button>
+           <Button asChild size="lg" variant="outline">
+            <a href="https://drive.google.com/file/d/1V1QLhGdQt3amrdFOTivPQyLaS9lNPNTH/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+              <FileText className="mr-2"/>
+              Resume
+            </a>
           </Button>
           <Button asChild size="lg" variant="outline" className="border-accent text-accent hover:bg-accent/10 hover:text-accent glow-accent">
             <a href="#contact">Get In Touch</a>
