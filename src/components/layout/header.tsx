@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { BotIcon, LogIn, LogOut } from 'lucide-react';
+import { BotIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/hooks/use-auth';
 import { Button } from '@/components/ui/button';
@@ -49,11 +49,6 @@ export default function Header() {
               {link.label}
             </Link>
           ))}
-           {user ? (
-             <Button variant="ghost" onClick={logout}><LogOut className="mr-2"/> Logout</Button>
-           ) : (
-             <Button variant="ghost" asChild><Link href="/login"><LogIn className="mr-2"/> Admin</Link></Button>
-           )}
         </nav>
       </div>
     </header>
