@@ -22,7 +22,7 @@ export default function HeroSection() {
       {/* Blackhole Video and Orbiting Icons */}
       <div className="relative w-96 h-96 flex items-center justify-center">
         <div 
-          className="absolute w-64 h-64 md:w-80 md:h-80 rounded-full pulse"
+          className="absolute w-64 h-64 md:w-80 md:h-80 pulse"
           style={{
             boxShadow: '0 0 20px 5px hsl(var(--primary) / 0.6), 0 0 50px 20px hsl(var(--accent) / 0.4)',
           }}
@@ -32,7 +32,7 @@ export default function HeroSection() {
             loop 
             muted 
             playsInline
-            className="w-full h-full object-cover rounded-full"
+            className="w-full h-full object-cover"
             src="/blackhole.webm"
           >
             Your browser does not support the video tag.
