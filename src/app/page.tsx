@@ -4,7 +4,7 @@ import HeroSection from '@/components/sections/hero';
 import SkillsSection from '@/components/sections/skills';
 import SecuritySection from '@/components/sections/security';
 import ProjectsSection from '@/components/sections/projects';
-import AiProjectsSection from '@/components/sections/ai-projects';
+import AiPlayground from '@/components/sections/ai-playground';
 import DriveSection from '@/components/sections/drive';
 import ContactSection from '@/components/sections/contact';
 
@@ -17,7 +17,7 @@ export default function Home() {
         <SkillsSection />
         <SecuritySection />
         <ProjectsSection />
-        <AiProjectsSection />
+        <AiPlayground />
         <div className="container mx-auto px-4 py-16 md:py-24">
            <div className="grid gap-16 lg:grid-cols-2">
             <DriveSection />
