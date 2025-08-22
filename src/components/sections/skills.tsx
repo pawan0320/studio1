@@ -1,33 +1,35 @@
 import { Card } from "@/components/ui/card";
-import { BrainCircuit, Code, Database, Server, Wind, Bot } from 'lucide-react';
+import { BrainCircuit, Code, Database, Server, Wind, Bot, Star, Shield, Cloud, LucideIcon, FileJson, GitCommit, Braces, Smartphone, Globe } from 'lucide-react';
 
-const skills = [
-  { name: 'Python', category: 'Languages' },
-  { name: 'Java', category: 'Languages' },
-  { name: 'C++', category: 'Languages' },
-  { name: 'JavaScript', category: 'Languages' },
-  { name: 'HTML5', category: 'Web' },
-  { name: 'CSS3', category: 'Web' },
-  { name: 'React.js', category: 'Web' },
-  { name: 'Node.js', category: 'Web' },
-  { name: 'Express.js', category: 'Web' },
-  { name: 'MySQL', category: 'Databases' },
-  { name: 'MongoDB', category: 'Databases' },
-  { name: 'SQLite', category: 'Databases' },
-  { name: 'Git', category: 'Tools' },
-  { name: 'Docker', category: 'Tools' },
-  { name: 'Jenkins', category: 'Tools' },
-  { name: 'GitHub', category: 'Tools' },
-  { name: 'AWS (EC2)', category: 'Cloud' },
+const skills: { name: string; category: string; icon: LucideIcon }[] = [
+  { name: 'Python', category: 'Languages', icon: Code },
+  { name: 'Java', category: 'Languages', icon: Code },
+  { name: 'C++', category: 'Languages', icon: Code },
+  { name: 'JavaScript', category: 'Languages', icon: Code },
+  { name: 'HTML5', category: 'Web', icon: Globe },
+  { name: 'CSS3', category: 'Web', icon: Globe },
+  { name: 'React.js', category: 'Web', icon: Smartphone },
+  { name: 'Node.js', category: 'Web', icon: Server },
+  { name: 'Express.js', category: 'Web', icon: Server },
+  { name: 'MySQL', category: 'Databases', icon: Database },
+  { name: 'MongoDB', category: 'Databases', icon: Database },
+  { name: 'SQLite', category: 'Databases', icon: Database },
+  { name: 'Git', category: 'Tools', icon: GitCommit },
+  { name: 'Docker', category: 'Tools', icon: Wind },
+  { name: 'Jenkins', category: 'Tools', icon: Bot },
+  { name: 'GitHub', category: 'Tools', icon: GitCommit },
+  { name: 'AWS (EC2)', category: 'Cloud', icon: Cloud },
 ];
 
-const SkillCard = ({ name }: { name: string }) => (
+const SkillCard = ({ name, icon: Icon }: { name: string; icon: LucideIcon }) => (
     <div className="group rounded-lg [perspective:1000px]">
         <div className="relative h-full transform-style-3d transition-transform duration-700 group-hover:rotate-y-180">
-            <div className="absolute inset-0 flex items-center justify-center rounded-lg bg-card border border-primary/20 backface-hidden">
+            <div className="absolute inset-0 flex flex-col items-center justify-center rounded-lg bg-card border border-primary/20 backface-hidden p-4 text-center">
+                <Icon className="w-12 h-12 text-primary mb-2" />
                 <p className="font-headline text-lg font-medium">{name}</p>
             </div>
-            <div className="absolute inset-0 flex items-center justify-center rounded-lg bg-primary/90 text-primary-foreground rotate-y-180 backface-hidden glow-primary">
+            <div className="absolute inset-0 flex flex-col items-center justify-center rounded-lg bg-primary/90 text-primary-foreground rotate-y-180 backface-hidden glow-primary p-4 text-center">
+                 <Icon className="w-12 h-12 mb-2" />
                 <p className="font-headline text-lg font-bold">{name}</p>
             </div>
         </div>
@@ -46,7 +48,7 @@ export default function SkillsSection() {
       </div>
       <div className="mt-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {skills.map((skill) => (
-          <SkillCard key={skill.name} name={skill.name} />
+          <SkillCard key={skill.name} name={skill.name} icon={skill.icon} />
         ))}
       </div>
     </section>
