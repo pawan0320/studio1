@@ -117,9 +117,9 @@ export default function SkillsSection() {
                 transition={{ type: "spring", stiffness: 300 }}
                 className="group"
               >
-                <Card className="h-full bg-card/50 border-accent/20 glow-accent shadow-lg shadow-accent/10 flex flex-col items-center justify-center p-4 aspect-square">
+                <Card className="h-full bg-card/50 border-accent/20 glow-accent shadow-lg shadow-accent/10 flex flex-col items-center justify-center p-3 aspect-square w-28 h-28">
                   <TechLogo path={tech.path} alt={tech.alt} />
-                  <p className="mt-2 text-sm text-center font-medium text-muted-foreground group-hover:text-accent transition-colors">
+                  <p className="mt-2 text-xs text-center font-medium text-muted-foreground group-hover:text-accent transition-colors">
                     {tech.alt}
                   </p>
                 </Card>
