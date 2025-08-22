@@ -3,10 +3,8 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { BotIcon, LogIn, LogOut } from 'lucide-react';
+import { BotIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { useAuth } from '@/hooks/use-auth.tsx';
-import { Button } from '../ui/button';
 
 const NAV_LINKS = [
   { href: '#skills', label: 'Skills' },
@@ -17,7 +15,6 @@ const NAV_LINKS = [
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
-  const { user, loading, logout } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -49,21 +46,6 @@ export default function Header() {
               {link.label}
             </Link>
           ))}
-           {!loading && (
-            user ? (
-              <Button variant="ghost" onClick={logout}>
-                <LogOut className="mr-2 h-4 w-4" />
-                Logout
-              </Button>
-            ) : (
-              <Button asChild variant="ghost">
-                <Link href="/login">
-                  <LogIn className="mr-2 h-4 w-4" />
-                  Login
-                </Link>
-              </Button>
-            )
-          )}
         </nav>
       </div>
     </header>
