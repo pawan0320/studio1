@@ -42,8 +42,8 @@ export default function HeroSection() {
         </video>
         {SKILL_ICONS.map(({ Icon, className, style }, index) => (
             <div key={index} className="absolute top-1/2 left-1/2 orbit" style={style}>
-              <div className="w-12 h-12 bg-card/60 backdrop-blur-sm rounded-full flex items-center justify-center">
-                <Icon className={`w-7 h-7 ${className}`} />
+              <div className="w-16 h-16 bg-card/60 backdrop-blur-sm rounded-full flex items-center justify-center">
+                <Icon className={`w-9 h-9 ${className}`} />
               </div>
             </div>
         ))}
