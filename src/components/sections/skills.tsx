@@ -46,11 +46,15 @@ const skillsByCategory: { category: string; skills: { name: string; icon: Lucide
     },
 ];
 
+const pyramidSkills = skillsByCategory.flatMap(category => category.skills);
+
 const pyramidStructure = [
-    [skillsByCategory[0]],
-    [skillsByCategory[1]],
-    [skillsByCategory[2], skillsByCategory[3], skillsByCategory[4]],
+    pyramidSkills.slice(0, 1), 
+    pyramidSkills.slice(1, 5),
+    pyramidSkills.slice(5, 12),
+    pyramidSkills.slice(12, 17),
 ];
+
 
 const SkillCard = ({ name, icon: Icon }: { name: string; icon: LucideIcon }) => (
     <div className="group rounded-lg [perspective:1000px]">
@@ -77,20 +81,11 @@ export default function SkillsSection() {
           Never miss a task, deadline, or idea.
         </p>
       </div>
-       <div className="mt-16 flex flex-col items-center space-y-12">
+       <div className="mt-16 flex flex-col items-center space-y-8">
         {pyramidStructure.map((row, rowIndex) => (
-          <div key={rowIndex} className="flex flex-wrap justify-center items-start gap-8">
-            {row.map(({ category, skills }) => (
-              <div key={category} className="flex flex-col items-center">
-                <h3 className="mb-6 text-center font-headline text-2xl font-bold text-glow-accent sm:text-3xl">
-                  {category}
-                </h3>
-                <div className="flex flex-wrap justify-center gap-6">
-                  {skills.map((skill) => (
-                    <SkillCard key={skill.name} name={skill.name} icon={skill.icon} />
-                  ))}
-                </div>
-              </div>
+          <div key={rowIndex} className="flex flex-wrap justify-center gap-6">
+            {row.map((skill) => (
+                <SkillCard key={skill.name} name={skill.name} icon={skill.icon} />
             ))}
           </div>
         ))}
@@ -98,5 +93,3 @@ export default function SkillsSection() {
     </section>
   );
 }
-
-    
