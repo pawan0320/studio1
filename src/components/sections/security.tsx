@@ -14,16 +14,9 @@ const codeSnippets = [
 
 export default function SecuritySection() {
   return (
-    <section id="security" className="relative min-h-[60vh] w-full flex items-center justify-center overflow-hidden py-24">
-      <div className="container mx-auto flex flex-col items-center justify-center">
-        <div className="text-center z-20 mb-16 px-4">
-          <h2 className="font-headline text-4xl font-bold tracking-tighter text-glow-primary sm:text-5xl">Fortified by Design</h2>
-          <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
-            Building high-performance systems with security at the core, not as an afterthought.
-          </p>
-        </div>
-
-        <div className="relative h-[300px] w-[300px] flex items-center justify-center">
+    <section id="security" className="relative w-full flex items-center justify-center overflow-hidden py-24">
+      <div className="container mx-auto grid lg:grid-cols-2 gap-16 items-center">
+        <div className="relative h-[300px] w-full flex items-center justify-center">
            <Lock className="h-24 w-24 text-primary text-glow-primary z-10" />
           {codeSnippets.map(({ code, style }, index) => (
             <div key={index} className="absolute top-1/2 left-1/2 code-orbit z-0" style={style}>
@@ -32,6 +25,12 @@ export default function SecuritySection() {
               </code>
             </div>
           ))}
+        </div>
+        <div className="text-center lg:text-left z-20 px-4">
+          <h2 className="font-headline text-4xl font-bold tracking-tighter text-glow-primary sm:text-5xl">Fortified by Design</h2>
+          <p className="mt-4 max-w-2xl mx-auto lg:mx-0 text-lg text-muted-foreground">
+            Building high-performance systems with security at the core, not as an afterthought.
+          </p>
         </div>
       </div>
     </section>
