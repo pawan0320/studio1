@@ -8,7 +8,7 @@ const projects = [
     title: "Healthcare Booking Platform",
     description: "A comprehensive platform for booking healthcare appointments, with dedicated features for both doctors and patients.",
     image: "https://placehold.co/600x400.png",
-    hint: "healthcare doctor",
+    hint: "healthcare app",
     tags: ["React", "Firebase", "Node.js", "System Design"],
     link: "#",
   },
