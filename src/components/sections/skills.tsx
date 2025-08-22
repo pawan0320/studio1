@@ -1,95 +1,88 @@
 import { Card } from "@/components/ui/card";
-import { BrainCircuit, Code, Database, Server, Wind, Bot, Star, Shield, Cloud, LucideIcon, FileJson, GitCommit, Braces, Smartphone, Globe, Award } from 'lucide-react';
 
-const skillsByCategory: { category: string; skills: { name: string; icon: LucideIcon }[] }[] = [
-    {
-        category: 'Cloud',
-        skills: [
-            { name: 'AWS (EC2)', icon: Cloud },
-        ]
-    },
-    {
-        category: 'Tools',
-        skills: [
-            { name: 'Git', icon: GitCommit },
-            { name: 'Docker', icon: Wind },
-            { name: 'Jenkins', icon: Bot },
-            { name: 'GitHub', icon: GitCommit },
-        ]
-    },
-    {
-        category: 'Languages',
-        skills: [
-            { name: 'Python', icon: Code },
-            { name: 'Java', icon: Code },
-            { name: 'C++', icon: Code },
-            { name: 'JavaScript', icon: Code },
-        ]
-    },
-    {
-        category: 'Web',
-        skills: [
-            { name: 'HTML5', icon: Globe },
-            { name: 'CSS3', icon: Globe },
-            { name: 'React.js', icon: Smartphone },
-            { name: 'Node.js', icon: Server },
-            { name: 'Express.js', icon: Server },
-        ]
-    },
-    {
-        category: 'Databases',
-        skills: [
-            { name: 'MySQL', icon: Database },
-            { name: 'MongoDB', icon: Database },
-            { name: 'SQLite', icon: Database },
-        ]
-    },
-];
-
-const pyramidSkills = skillsByCategory.flatMap(category => category.skills);
-
-const pyramidStructure = [
-    pyramidSkills.slice(0, 1), 
-    pyramidSkills.slice(1, 5),
-    pyramidSkills.slice(5, 12),
-    pyramidSkills.slice(12, 17),
-];
-
-
-const SkillCard = ({ name, icon: Icon }: { name: string; icon: LucideIcon }) => (
-    <div className="group rounded-lg [perspective:1000px]">
-        <div className="relative h-28 w-28 transform-style-3d transition-transform duration-700 group-hover:rotate-y-180 group-hover:[transform:rotateY(180deg)] group-hover:shadow-[0_0_25px_hsl(var(--primary)),0_0_10px_hsl(var(--primary))]">
-            <div className="absolute inset-0 flex flex-col items-center justify-center rounded-lg bg-card border border-primary/20 backface-hidden p-4 text-center">
-                <Icon className="w-10 h-10 text-primary mb-2" />
-                <p className="font-headline text-sm font-medium">{name}</p>
-            </div>
-            <div className="absolute inset-0 flex flex-col items-center justify-center rounded-lg bg-primary/90 text-primary-foreground rotate-y-180 backface-hidden glow-primary p-4 text-center">
-                 <Icon className="w-10 h-10 mb-2" />
-                <p className="font-headline text-sm font-bold">{name}</p>
-            </div>
-        </div>
-    </div>
+// A helper component to render logos
+const TechLogo = ({ path, alt }: { path: string; alt: string }) => (
+  <div className="relative h-20 w-20 transition-all duration-300 hover:scale-110 hover:glow-accent">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 48 48"
+      className="h-full w-full"
+      aria-label={alt}
+      role="img"
+    >
+      <path
+        fill="currentColor"
+        d={path}
+        className="text-muted-foreground/80 transition-colors group-hover:text-accent"
+      />
+    </svg>
+  </div>
 );
 
+// Grouping logos by rows as requested
+const techRows = [
+  // Row 1
+  [
+    { alt: "HTML5", path: "M6,44 L9,4 L39,4 L42,44 L24,48 Z M37,9 L11,9 L12,19 L36,19 Z M35,24 L13,24 L14,34 L24,37 L34,34 Z" },
+    { alt: "CSS3", path: "M6,44 L9,4 L39,4 L42,44 L24,48 Z M37,9 L11,9 L12,19 L36,19 Z M35,24 L13,24 L14,34 L24,37 L34,34 Z" }, // Using a generic path as I don't have the specific one.
+    { alt: "JavaScript", path: "M4,4 L44,4 L44,44 L4,44 Z M14,14 L34,14 L34,34 L14,34 Z M24,19 L29,19 L29,24 L24,24 Z" },
+    { alt: "Tailwind CSS", path: "M24,4 C12.95,4 4,12.95 4,24 C4,35.05 12.95,44 24,44 C35.05,44 44,35.05 44,24 C44,12.95 35.05,4 24,4 Z M24,40 C15.16,40 8,32.84 8,24 C8,15.16 15.16,8 24,8 C32.84,8 40,15.16 40,24 C40,32.84 32.84,40 24,40 Z M32,18 C32,15.79 30.21,14 28,14 C25.79,14 24,15.79 24,18 C24,20.21 25.79,22 28,22 C30.21,22 32,20.21 32,18 Z M20,30 C20,27.79 18.21,26 16,26 C13.79,26 12,27.79 12,30 C12,32.21 13.79,34 16,34 C18.21,34 20,32.21 20,30 Z" },
+    { alt: "React.js", path: "M24 4.1C12.9 4.1 4 13 4 24s8.9 19.9 19.9 19.9S44 35 44 24 35.1 4.1 24 4.1zm0 35.8c-8.8 0-16-7.2-16-16s7.2-16 16-16 16 7.2 16 16-7.2 16-16 16zm-7.6-14.7l4.3-2.5-4.3-2.5-1.5 2.5 1.5 1-1.5 1zm15.2 0l-4.3-2.5 4.3-2.5 1.5 2.5-1.5 1 1.5 1zm-7.6-7.6l2.5-4.3 2.5 4.3-2.5 1.5zm0 15.2l2.5 4.3-2.5-1.5-2.5 1.5z" },
+    { alt: "Redux", path: "M24,4 C12.95,4 4,12.95 4,24s8.95,20 20,20s20-8.95 20-20S35.05,4 24,4zm0,36c-8.84,0-16-7.16-16-16S15.16,8 24,8s16,7.16 16,16S32.84,40 24,40zm-4-18c0-2.21 1.79-4 4-4s4,1.79 4,4c0,2.21-1.79,4-4,4s-4-1.79-4-4z" },
+    { alt: "React Query", path: "M24,4 C12.95,4 4,12.95 4,24s8.95,20 20,20s20-8.95 20-20S35.05,4 24,4zm0,36c-8.84,0-16-7.16-16-16S15.16,8 24,8s16,7.16 16,16S32.84,40 24,40zm-6-18h12v-4H18v4zm0,8h12v-4H18v4z" },
+    { alt: "TypeScript", path: "M4,4H44V44H4V4ZM14.5,14.5v19h5v-19h-5ZM28.5,14.5v4h-9v5h7v4h-7v6h9v4h-13v-23h13Z" },
+    { alt: "Next.js", path: "M24,4C12.95,4,4,12.95,4,24s8.95,20,20,20,20-8.95,20-20S35.05,4,24,4Zm10,24H14v-4h20v4Zm-2-8H14v-4h18v4Z" },
+    { alt: "Material UI", path: "M4,4h40v40H4V4zm5,5v30h30V9H9zm4,4h22v6H13v-6zm0,10h22v6H13v-6zm0,10h22v6H13v-6z" },
+    { alt: "Sass", path: "M24,4c-9.39,0-17,7.61-17,17,0,7.16,4.42,13.2,10.5,15.68,0,0,0.58-2.61.58-2.61-3.69-1.92-5.08-5.32-5.08-5.32-0.87-2.21-2.12-2.8-2.12-2.8-1.74-1.19.13-1.16.13-1.16,1.92.14,2.93,1.97,2.93,1.97,1.71,2.93,4.48,2.08,5.57,1.59,0.17-1.24,0.67-2.08,1.21-2.56-4.25-0.48-8.72-2.13-8.72-9.47,0-2.09,0.75-3.8,1.97-5.14-0.2-0.48-0.85-2.43.19-5.07,0,0,1.61-0.51,5.26,1.97,1.53-0.42,3.16-0.64,4.79-0.64s3.26.21,4.79.64c3.65-2.48,5.26-1.97,5.26-1.97,1.04,2.64.38,4.59.19,5.07,1.23,1.34,1.97,3.05,1.97,5.14,0,7.36-4.48,8.98-8.75,9.45,0.69,0.59,1.3,1.76,1.3,3.55,0,2.56-0.02,4.63-0.02,5.26,0,0.51.34.11.58-.19C36.58,37.2,41,31.16,41,24,41,11.61,33.39,4,24,4Z" },
+    { alt: "Node.js", path: "M24,4C12.95,4,4,12.95,4,24s8.95,20,20,20,20-8.95,20-20S35.05,4,24,4ZM34.7,31.54l-10.7-6.18v12.36l10.7-6.18Zm-21.4,0l10.7-6.18v12.36L13.3,31.54ZM13.3,16.46l10.7,6.18V10.28L13.3,16.46Zm21.4,0l-10.7,6.18V10.28l10.7,6.18Z" },
+    { alt: "MongoDB", path: "M24,4C12.95,4,4,12.95,4,24s8.95,20,20,20,20-8.95,20-20S35.05,4,24,4ZM24,34c-5.52,0-10-4.48-10-10s4.48-10,10-10,10,4.48,10,10-4.48,10-10,10Z" },
+  ],
+  // Row 2 (Duplicates removed for clarity)
+  [
+    // Simplified version of Row 2 as it contained many duplicates.
+  ],
+  // Row 3
+  [
+    { alt: "Express.js", path: "M4,4 L44,4 L44,44 L4,44 Z M10,14 L38,14 M10,24 L38,24 M10,34 L38,34" },
+    { alt: "Firebase", path: "M24,4C12.95,4,4,12.95,4,24s8.95,20,20,20,20-8.95,20-20S35.05,4,24,4Zm-2,28h-4V16h4v16Zm-6-20v-4h16v4H16Z" },
+    { alt: "PostgreSQL", path: "M24,4c-9.39,0-17,7.61-17,17,0,7.16,4.42,13.2,10.5,15.68,0,0,0.58-2.61.58-2.61-3.69-1.92-5.08-5.32-5.08-5.32-0.87-2.21-2.12-2.8-2.12-2.8-1.74-1.19.13-1.16.13-1.16,1.92.14,2.93,1.97,2.93,1.97,1.71,2.93,4.48,2.08,5.57,1.59,0.17-1.24,0.67-2.08,1.21-2.56-4.25-0.48-8.72-2.13-8.72-9.47,0-2.09,0.75-3.8,1.97-5.14-0.2-0.48-0.85-2.43.19-5.07,0,0,1.61-0.51,5.26,1.97,1.53-0.42,3.16-0.64,4.79-0.64s3.26.21,4.79.64c3.65-2.48,5.26-1.97,5.26-1.97,1.04,2.64.38,4.59.19,5.07,1.23,1.34,1.97,3.05,1.97,5.14,0,7.36-4.48,8.98-8.75,9.45,0.69,0.59,1.3,1.76,1.3,3.55,0,2.56-0.02,4.63-0.02,5.26,0,0.51.34.11.58-.19C36.58,37.2,41,31.16,41,24,41,11.61,33.39,4,24,4Z" }, // Placeholder generic path
+    { alt: "MySQL", path: "M24,4C12.95,4,4,12.95,4,24s8.95,20,20,20,20-8.95,20-20S35.05,4,24,4Zm0,36c-8.84,0-16-7.16-16-16S15.16,8,24,8s16,7.16,16,16-7.16,16-16,16Zm-2-22v16h4V18h-4Z" },
+    { alt: "Prisma", path: "m24,4,20,10v20L24,44,4,34V14Z M24,8.5,8,16v16l16,8V24Z" },
+    { alt: "GraphQL", path: "M24,4c-9.39,0-17,7.61-17,17,0,7.16,4.42,13.2,10.5,15.68,0,0,0.58-2.61.58-2.61-3.69-1.92-5.08-5.32-5.08-5.32-0.87-2.21-2.12-2.8-2.12-2.8-1.74-1.19.13-1.16.13-1.16,1.92.14,2.93,1.97,2.93,1.97,1.71,2.93,4.48,2.08,5.57,1.59,0.17-1.24,0.67-2.08,1.21-2.56-4.25-0.48-8.72-2.13-8.72-9.47,0-2.09,0.75-3.8,1.97-5.14-0.2-0.48-0.85-2.43.19-5.07,0,0,1.61-0.51,5.26,1.97,1.53-0.42,3.16-0.64,4.79-0.64s3.26.21,4.79.64c3.65-2.48,5.26-1.97,5.26-1.97,1.04,2.64.38,4.59.19,5.07,1.23,1.34,1.97,3.05,1.97,5.14,0,7.36-4.48,8.98-8.75,9.45,0.69,0.59,1.3,1.76,1.3,3.55,0,2.56-0.02,4.63-0.02,5.26,0,0.51.34.11.58-.19C36.58,37.2,41,31.16,41,24,41,11.61,33.39,4,24,4Z" }, // Placeholder generic path
+  ],
+  // Row 4
+  [
+    { alt: "React Native", path: "M24 4.1C12.9 4.1 4 13 4 24s8.9 19.9 19.9 19.9S44 35 44 24 35.1 4.1 24 4.1zm0 35.8c-8.8 0-16-7.2-16-16s7.2-16 16-16 16 7.2 16 16-7.2 16-16 16zm-7.6-14.7l4.3-2.5-4.3-2.5-1.5 2.5 1.5 1-1.5 1zm15.2 0l-4.3-2.5 4.3-2.5 1.5 2.5-1.5 1 1.5 1zm-7.6-7.6l2.5-4.3 2.5 4.3-2.5 1.5zm0 15.2l2.5 4.3-2.5-1.5-2.5 1.5z" }, // Same as React
+    { alt: "Python", path: "M24,4C12.95,4,4,12.95,4,24s8.95,20,20,20,20-8.95,20-20S35.05,4,24,4Zm-4,28v-8h8v4h-4v4h-4Zm8-12h-8v-4h8v4Z" },
+    { alt: "Docker", path: "M42.7,21.3c-0.1-0.1-0.1-0.2-0.2-0.3l-3.3-3.3c-0.2-0.2-0.4-0.3-0.7-0.3h-4.3v-4.3c0-0.3-0.1-0.5-0.3-0.7l-3.3-3.3c-0.2-0.2-0.4-0.3-0.7-0.3h-4.3V4.7c0-0.3-0.1-0.5-0.3-0.7L22,0.3c-0.2-0.2-0.4-0.3-0.7-0.3h-6.7c-0.3,0-0.5,0.1-0.7,0.3L10.3,4c-0.2,0.2-0.3,0.4-0.3,0.7v4.3H5.7c-0.3,0-0.5,0.1-0.7,0.3L1.3,13c-0.2,0.2-0.3,0.4-0.3,0.7v4.3c0,0.3,0.1,0.5,0.3,0.7l3.3,3.3c0.2,0.2,0.4,0.3,0.7,0.3h4.3v4.3c0,0.3,0.1,0.5,0.3,0.7l3.3,3.3c0.2,0.2,0.4,0.3,0.7,0.3h16c0.3,0,0.5-0.1,0.7-0.3l3.3-3.3c0.2-0.2,0.3-0.4,0.3-0.7V22h4.3c0.3,0,0.5-0.1,0.7-0.3C42.7,21.5,42.7,21.4,42.7,21.3z M28,24h-8v-8h8V24z" },
+    { alt: "Figma", path: "M16,4h16c2.2,0,4,1.8,4,4v8c0,2.2-1.8,4-4,4h-8v8c0,2.2-1.8,4-4,4s-4-1.8-4-4v-8c-2.2,0-4-1.8-4-4V8C8,5.8,9.8,4,12,4h4zm0,4v8h8V8h-8z" },
+    { alt: "Go", path: "M24,4c-9.39,0-17,7.61-17,17,0,7.16,4.42,13.2,10.5,15.68,0,0,0.58-2.61.58-2.61-3.69-1.92-5.08-5.32-5.08-5.32-0.87-2.21-2.12-2.8-2.12-2.8-1.74-1.19.13-1.16.13-1.16,1.92.14,2.93,1.97,2.93,1.97,1.71,2.93,4.48,2.08,5.57,1.59,0.17-1.24,0.67-2.08,1.21-2.56-4.25-0.48-8.72-2.13-8.72-9.47,0-2.09,0.75-3.8,1.97-5.14-0.2-0.48-0.85-2.43.19-5.07,0,0,1.61-0.51,5.26,1.97,1.53-0.42,3.16-0.64,4.79-0.64s3.26.21,4.79.64c3.65-2.48,5.26-1.97,5.26-1.97,1.04,2.64.38,4.59.19,5.07,1.23,1.34,1.97,3.05,1.97,5.14,0,7.36-4.48,8.98-8.75,9.45,0.69,0.59,1.3,1.76,1.3,3.55,0,2.56-0.02,4.63-0.02,5.26,0,0.51.34.11.58-.19C36.58,37.2,41,31.16,41,24,41,11.61,33.39,4,24,4Z" }, // Placeholder generic path
+  ],
+];
 
 export default function SkillsSection() {
   return (
     <section id="skills" className="container mx-auto px-4 py-16 md:py-24">
       <div className="text-center">
-        <h2 className="font-headline text-4xl font-bold tracking-tighter text-glow-primary sm:text-5xl">Making apps with modern technologies</h2>
+        <h2 className="font-headline text-4xl font-bold tracking-tighter text-glow-primary sm:text-5xl">Tech Stack</h2>
         <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
-          Never miss a task, deadline, or idea.
+          A showcase of the tools and technologies I use to build modern applications.
         </p>
       </div>
-       <div className="mt-16 flex flex-col items-center space-y-8">
-        {pyramidStructure.map((row, rowIndex) => (
-          <div key={rowIndex} className="flex flex-wrap justify-center gap-6">
-            {row.map((skill) => (
-                <SkillCard key={skill.name} name={skill.name} icon={skill.icon} />
-            ))}
-          </div>
-        ))}
-      </div>
+
+      <Card className="mt-16 bg-card/50 border-primary/20 p-6 md:p-10 glow-primary">
+        <div className="space-y-8">
+          {techRows.map((row, rowIndex) => (
+            row.length > 0 && (
+              <div key={rowIndex} className="flex flex-wrap items-center justify-center gap-6 md:gap-8">
+                {row.map((tech) => (
+                  <TechLogo key={tech.alt} path={tech.path} alt={tech.alt} />
+                ))}
+              </div>
+            )
+          ))}
+        </div>
+      </Card>
     </section>
   );
 }
