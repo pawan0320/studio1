@@ -40,8 +40,8 @@ export default function HeroSection() {
       <div className="relative w-96 h-96 flex items-center justify-center">
         {SKILL_ICONS.map(({ Icon, className, style }, index) => (
             <div key={index} className="absolute top-1/2 left-1/2 orbit" style={style}>
-              <div className="w-20 h-20 bg-card/60 backdrop-blur-sm rounded-full flex items-center justify-center">
-                <Icon className={`w-10 h-10 ${className}`} />
+              <div className="w-28 h-28 bg-card/60 backdrop-blur-sm rounded-full flex items-center justify-center">
+                <Icon className={`w-16 h-16 ${className}`} />
               </div>
             </div>
         ))}
