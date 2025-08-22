@@ -57,12 +57,12 @@ const allSkills = [
 ];
 
 const pyramidRows = [
-  allSkills.slice(14, 15), // CSS3
-  allSkills.slice(0, 8),
-  allSkills.slice(8, 14),
-  allSkills.slice(15, 21),
-  allSkills.slice(21, 26),
-  allSkills.slice(26, 31),
+  allSkills.slice(0, 1),
+  allSkills.slice(1, 4),
+  allSkills.slice(4, 9),
+  allSkills.slice(9, 15),
+  allSkills.slice(15, 22),
+  allSkills.slice(22, 31),
 ];
 
 
