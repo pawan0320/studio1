@@ -1,5 +1,3 @@
-'use client';
-
 import { Cpu, ShieldCheck, Database, Cloud, BrainCircuit, Code2, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -14,10 +12,9 @@ export default function HeroSection() {
       {/* Blackhole Video */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0">
         <div 
-          className="relative w-64 h-64 md:w-80 md:h-80 rounded-full"
+          className="relative w-64 h-64 md:w-80 md:h-80 rounded-full pulse"
           style={{
             boxShadow: '0 0 20px 5px hsl(var(--primary) / 0.6), 0 0 50px 20px hsl(var(--accent) / 0.4)',
-            animation: 'pulse 4s ease-in-out infinite',
           }}
         >
           <video 
@@ -55,19 +52,6 @@ export default function HeroSection() {
           </Button>
         </div>
       </div>
-      
-       <style jsx>{`
-        @keyframes pulse {
-          0%, 100% {
-            transform: scale(1);
-            opacity: 0.8;
-          }
-          50% {
-            transform: scale(1.05);
-            opacity: 1;
-          }
-        }
-      `}</style>
     </section>
   );
 }
