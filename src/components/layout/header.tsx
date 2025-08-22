@@ -37,7 +37,7 @@ export default function Header() {
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <Link href="/" className="flex items-center gap-2">
           <BotIcon className="h-8 w-8 text-primary text-glow-primary" />
-          <span className="text-lg font-bold text-glow-primary">PSK</span>
+          <span className="text-lg font-bold text-glow-primary">Pawan Sai Kodali</span>
         </Link>
         <nav className="hidden md:flex items-center gap-6">
           {NAV_LINKS.map((link) => (
