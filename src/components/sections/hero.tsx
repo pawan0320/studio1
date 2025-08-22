@@ -16,18 +16,12 @@ export default function HeroSection() {
   return (
     <section id="hero" className="relative h-screen w-full flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 bg-background">
-        <div className="absolute inset-0 bg-radial-gradient(ellipse_at_center,transparent_20%,hsl(var(--background)))"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/30 via-transparent to-transparent opacity-40"></div>
-      </div>
-
-      {/* Blackhole Video and Orbiting Icons */}
-      <div className="relative w-96 h-96 flex items-center justify-center">
         <video 
           autoPlay 
           loop 
           muted 
           playsInline
-          className="absolute object-cover pulse"
+          className="absolute object-cover"
           style={{
             width: '100vw',
             height: '100vh',
@@ -40,10 +34,14 @@ export default function HeroSection() {
         >
           Your browser does not support the video tag.
         </video>
+      </div>
+
+      {/* Orbiting Icons */}
+      <div className="relative w-96 h-96 flex items-center justify-center">
         {SKILL_ICONS.map(({ Icon, className, style }, index) => (
             <div key={index} className="absolute top-1/2 left-1/2 orbit" style={style}>
-              <div className="w-16 h-16 bg-card/60 backdrop-blur-sm rounded-full flex items-center justify-center">
-                <Icon className={`w-9 h-9 ${className}`} />
+              <div className="w-20 h-20 bg-card/60 backdrop-blur-sm rounded-full flex items-center justify-center">
+                <Icon className={`w-10 h-10 ${className}`} />
               </div>
             </div>
         ))}
