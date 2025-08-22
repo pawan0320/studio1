@@ -3,11 +3,11 @@
 
 import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import { BrainCircuit, Briefcase, Cloud, Code, Database, Dna, Palette, Smartphone, Languages } from "lucide-react";
+import { BrainCircuit, Cloud, Code, Database, Languages, Smartphone } from "lucide-react";
 
 // A helper component to render logos as inline SVGs
 const TechLogo = ({ path, alt, viewBox = "0 0 48 48" }: { path: string; alt: string; viewBox?: string }) => (
-  <div className="relative h-12 w-12 transition-all duration-300 group-hover:scale-110">
+  <div className="relative h-10 w-10 transition-all duration-300 group-hover:scale-110">
      <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox={viewBox}
@@ -107,7 +107,7 @@ export default function SkillsSection() {
         </p>
       </div>
 
-      <div className="mt-16 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-6 justify-center">
+      <div className="mt-16 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 xl:grid-cols-10 gap-4 justify-center">
         {SKILL_CATEGORIES.flatMap(({ skills }) => skills).map((tech) => (
           <motion.div
             key={tech.alt}
