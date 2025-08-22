@@ -3,7 +3,6 @@
 
 import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import { BrainCircuit, Cloud, Code, Database, Languages, Smartphone } from "lucide-react";
 
 // A helper component to render logos as inline SVGs
 const TechLogo = ({ path, alt, viewBox = "0 0 48 48" }: { path: string; alt: string; viewBox?: string }) => (
@@ -26,8 +25,6 @@ const TechLogo = ({ path, alt, viewBox = "0 0 48 48" }: { path: string; alt: str
 
 const SKILL_CATEGORIES = [
   {
-    name: "Languages",
-    Icon: Languages,
     skills: [
         { alt: "Python", path: "M24,4C12.95,4,4,12.95,4,24s8.95,20,20,20s20-8.95,20-20S35.05,4,24,4z M24,34c-5.52,0-10-4.48-10-10h4c0,3.31,2.69,6,6,6s6-2.69,6-6v-4h-4v-4h8v8C34,29.52,29.52,34,24,34z M24,14c5.52,0,10,4.48,10,10h-4c0-3.31-2.69-6-6-6s-6,2.69-6,6v4h4v4h-8v-8C14,18.48,18.48,14,24,14z" },
         { alt: "Java", path: "M10,4h28v10H10z M10,18h28v4H10z M10,26h28v18H10z M14,8h20v2H14z M14,30h20v10H14z M18,34h12v2H18z" },
@@ -38,8 +35,6 @@ const SKILL_CATEGORIES = [
     ]
   },
   {
-    name: "Frontend / Web",
-    Icon: Code,
     skills: [
       { alt: "HTML5", path: "M6,44 L9,4 L39,4 L42,44 L24,48 Z M37,9 L11,9 L12,19 L36,19 Z M35,24 L13,24 L14,34 L24,37 L34,34 Z" },
       { alt: "CSS3", path: "M42.1,5.2l-3.2,36.9l-14.9,4.1l-14.9-4.1L5.9,5.2H42.1z M34.9,13.6H17.2l0.4,4.2h16.9l-1.3,14.6l-6,1.6l-6-1.6l-0.4-5.1h4.2l0.2,2.4l2,0.5l2-0.5l0.2-2.7H13.1l-0.8-9.3h22.2L34.9,13.6z" },
@@ -53,8 +48,6 @@ const SKILL_CATEGORIES = [
     ]
   },
    {
-    name: "Backend / Databases",
-    Icon: Database,
     skills: [
         { alt: "Node.js", path: "M44,24l-6.8,11.8L24,44l-13.2-7.8L4,24l7.2-12.2L24,4l12.8,7.8L44,24z M24,8.2l-9.6,5.5L9,24l5.4,9.3l9.6,5.5l9.6-5.5L39,24l-5.4-9.3L24,8.2z M28,28h-8v-8h8V28z" },
         { alt: "Express.js", path: "M4,14h40M4,24h40M4,34h40M12,10l-8,4v20l8,4h24l8-4V14l-8-4H12z" },
@@ -67,8 +60,6 @@ const SKILL_CATEGORIES = [
     ]
   },
   {
-    name: "Cloud, DevOps & Tools",
-    Icon: Cloud,
     skills: [
         { alt: "Firebase", path: "M4.2,24L24,4.2,43.8,24,24,43.8z M9,24l15-15l15,15l-15,15z M24,14.5L14.5,24l9.5,9.5l9.5-9.5z" },
         { alt: "Docker", path: "M43.7,21.5c-0.1-0.2-0.3-0.4-0.5-0.5L38.4,16c-0.4-0.4-0.9-0.5-1.4-0.5h-5.2V10.2c0-0.5-0.2-1-0.5-1.4l-4.8-4.8c-0.4-0.4-0.9-0.5-1.4-0.5H16.2c-0.5,0-1,0.2-1.4,0.5l-4.8,4.8c-0.4,0.4-0.5,0.9-0.5,1.4v5.2H4.3c-0.5,0-1,0.2-1.4,0.5L0.5,21.5C0.2,21.9,0,22.4,0,23v10.2c0,0.5,0.2,1,0.5,1.4l4.8,4.8c0.4,0.4,0.9,0.5,1.4,0.5h28.5c0.5,0,1-0.2,1.4-0.5l4.8-4.8c0.4-0.4,0.5-0.9,0.5-1.4V23C44,22.4,43.8,21.9,43.7,21.5z M28,24h-8v-8h8V24z" },
@@ -79,21 +70,29 @@ const SKILL_CATEGORIES = [
     ]
   },
   {
-    name: "Mobile & Design",
-    Icon: Smartphone,
     skills: [
       { alt: "React Native", path: "M44,24c0,11.046-8.954,20-20,20S4,35.046,4,24S12.954,4,24,4S44,12.954,44,24z M24,8c-8.837,0-16,7.163-16,16s7.163,16,16,16s16-7.163,16-16S32.837,8,24,8z M24,30.1c-2.61,0-4.94-1.12-6.55-2.91l-2.9,2.9C17.06,32.6,20.35,34,24,34c3.65,0,6.94-1.4,9.45-3.91l-2.9-2.9C28.94,28.98,26.61,30.1,24,30.1z M34,14h-4v4h4V14z M18,14h-4v4h4V14z" },
       { alt: "Figma", path: "M16,4h16c2.2,0,4,1.8,4,4v8c0,2.2-1.8,4-4,4H24v8c0,2.2-1.8,4-4,4s-4-1.8-4-4v-8c-2.2,0-4-1.8-4-4V8C8,5.8,9.8,4,12,4h4z M24,8H16v8h8V8z" },
     ]
   },
   {
-    name: "AI / ML",
-    Icon: BrainCircuit,
     skills: [
       { alt: "ML Fundamentals Certified", path: "M24,4C12.95,4,4,12.95,4,24s8.95,20,20,20s20-8.95,20-20S35.05,4,24,4z M22.5,34l-3-3l5-5l3,3L22.5,34z M30,30l-8-8l8-8l3,3l-5,5l5,5L30,30z M14,18l-3-3l5-5l3,3L14,18z" },
     ]
   }
 ];
+
+const allSkills = SKILL_CATEGORIES.flatMap(({ skills }) => skills);
+
+const pyramidRows = [
+  allSkills.slice(0, 8),
+  allSkills.slice(8, 15),
+  allSkills.slice(15, 21),
+  allSkills.slice(21, 26),
+  allSkills.slice(26, 30),
+  allSkills.slice(30, 32),
+];
+
 
 export default function SkillsSection() {
   return (
@@ -107,22 +106,26 @@ export default function SkillsSection() {
         </p>
       </div>
 
-      <div className="mt-16 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 xl:grid-cols-10 gap-4 justify-center">
-        {SKILL_CATEGORIES.flatMap(({ skills }) => skills).map((tech) => (
-          <motion.div
-            key={tech.alt}
-            whileHover={{ scale: 1.1, rotateZ: 5 }}
-            whileTap={{ scale: 0.95 }}
-            transition={{ type: "spring", stiffness: 300 }}
-            className="group"
-          >
-            <Card className="h-full bg-card/50 border-accent/20 glow-accent shadow-lg shadow-accent/10 flex flex-col items-center justify-center p-4 aspect-square">
-              <TechLogo path={tech.path} alt={tech.alt} />
-              <p className="mt-2 text-sm text-center font-medium text-muted-foreground group-hover:text-accent transition-colors">
-                {tech.alt}
-              </p>
-            </Card>
-          </motion.div>
+      <div className="mt-16 flex flex-col items-center gap-4">
+        {pyramidRows.map((row, rowIndex) => (
+          <div key={rowIndex} className="flex justify-center gap-4 flex-wrap">
+            {row.map((tech) => (
+               <motion.div
+                key={tech.alt}
+                whileHover={{ scale: 1.1, rotateZ: 5 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 300 }}
+                className="group"
+              >
+                <Card className="h-full bg-card/50 border-accent/20 glow-accent shadow-lg shadow-accent/10 flex flex-col items-center justify-center p-4 aspect-square">
+                  <TechLogo path={tech.path} alt={tech.alt} />
+                  <p className="mt-2 text-sm text-center font-medium text-muted-foreground group-hover:text-accent transition-colors">
+                    {tech.alt}
+                  </p>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
         ))}
       </div>
     </section>
