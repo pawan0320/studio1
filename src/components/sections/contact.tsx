@@ -28,7 +28,7 @@ export default function ContactSection() {
   };
 
   return (
-    <div id="contact" className="h-full">
+    <div id="contact" className="max-w-2xl mx-auto">
       <Card className="h-full bg-card border-accent/20 glow-accent shadow-2xl shadow-accent/10">
         <CardHeader>
           <div className="flex items-center gap-4">
