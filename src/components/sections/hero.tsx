@@ -1,14 +1,7 @@
+'use client';
+
 import { Cpu, ShieldCheck, Database, Cloud, BrainCircuit, Code2, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-
-const SKILL_ICONS = [
-  { Icon: Cpu, style: { animationDelay: '0s' } },
-  { Icon: ShieldCheck, style: { animationDelay: '5s' } },
-  { Icon: Database, style: { animationDelay: '10s' } },
-  { Icon: Cloud, style: { animationDelay: '15s' } },
-  { Icon: BrainCircuit, style: { animationDelay: '20s' } },
-  { Icon: Code2, style: { animationDelay: '25s' } },
-];
 
 export default function HeroSection() {
   return (
@@ -16,6 +9,28 @@ export default function HeroSection() {
       <div className="absolute inset-0 bg-background">
         <div className="absolute inset-0 bg-radial-gradient(ellipse_at_center,transparent_20%,hsl(var(--background)))"></div>
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/30 via-transparent to-transparent opacity-40"></div>
+      </div>
+
+      {/* Blackhole Video */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0">
+        <div 
+          className="relative w-64 h-64 md:w-80 md:h-80 rounded-full"
+          style={{
+            boxShadow: '0 0 20px 5px hsl(var(--primary) / 0.6), 0 0 50px 20px hsl(var(--accent) / 0.4)',
+            animation: 'pulse 4s ease-in-out infinite',
+          }}
+        >
+          <video 
+            autoPlay 
+            loop 
+            muted 
+            playsInline
+            className="w-full h-full object-cover rounded-full"
+            src="/blackhole.webm"
+          >
+            Your browser does not support the video tag.
+          </video>
+        </div>
       </div>
 
       <div className="relative z-10 text-center px-4">
@@ -41,15 +56,18 @@ export default function HeroSection() {
         </div>
       </div>
       
-      <div className="absolute inset-0 z-0 flex items-center justify-center">
-          <div className="relative h-[300px] w-[300px]">
-            {SKILL_ICONS.map(({ Icon, style }, index) => (
-                <div key={index} className="absolute top-1/2 left-1/2 -m-4 h-8 w-8 orbit" style={style}>
-                    <Icon className="h-full w-full text-accent text-glow-accent opacity-50"/>
-                </div>
-            ))}
-          </div>
-      </div>
+       <style jsx>{`
+        @keyframes pulse {
+          0%, 100% {
+            transform: scale(1);
+            opacity: 0.8;
+          }
+          50% {
+            transform: scale(1.05);
+            opacity: 1;
+          }
+        }
+      `}</style>
     </section>
   );
 }
