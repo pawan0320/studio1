@@ -54,7 +54,6 @@ const allSkills = [
     { alt: "AWS EC2", path: "M4,4h40v40H4V4z M10,10h28v28H10V10z M14,14h20v4H14v-4zm0,8h20v4H14v-4zm0,8h20v4H14v-4z" },
     { alt: "React Native", path: "M44,24c0,11.046-8.954,20-20,20S4,35.046,4,24S12.954,4,24,4S44,12.954,44,24z M24,8c-8.837,0-16,7.163-16,16s7.163,16,16,16s16-7.163,16-16S32.837,8,24,8z M24,30.1c-2.61,0-4.94-1.12-6.55-2.91l-2.9,2.9C17.06,32.6,20.35,34,24,34c3.65,0,6.94-1.4,9.45-3.91l-2.9-2.9C28.94,28.98,26.61,30.1,24,30.1z M34,14h-4v4h4V14z M18,14h-4v4h4V14z" },
     { alt: "Figma", path: "M16,4h16c2.2,0,4,1.8,4,4v8c0,2.2-1.8,4-4,4H24v8c0,2.2-1.8,4-4,4s-4-1.8-4-4v-8c-2.2,0-4-1.8-4-4V8C8,5.8,9.8,4,12,4h4z M24,8H16v8h8V8z" },
-    { alt: "ML Fundamentals Certified", path: "M24,4C12.95,4,4,12.95,4,24s8.95,20,20,20s20-8.95,20-20S35.05,4,24,4z M22.5,34l-3-3l5-5l3,3L22.5,34z M30,30l-8-8l8-8l3,3l-5,5l5,5L30,30z M14,18l-3-3l5-5l3,3L14,18z" },
 ];
 
 const pyramidRows = [
@@ -63,8 +62,7 @@ const pyramidRows = [
   allSkills.slice(8, 14),
   allSkills.slice(15, 21),
   allSkills.slice(21, 26),
-  allSkills.slice(26, 30),
-  allSkills.slice(30, 32),
+  allSkills.slice(26, 31),
 ];
 
 
