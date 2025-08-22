@@ -1,12 +1,12 @@
 import { Cpu, ShieldCheck, Database, Cloud, BrainCircuit, Code2, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { SiReact, SiJavascript, SiFirebase, SiAmazonaws, SiNodedotjs, SiPython } from '@icons-pack/react-simple-icons';
+import { SiReact, SiJavascript, SiFirebase, SiAmazon, SiNodedotjs, SiPython } from '@icons-pack/react-simple-icons';
 
 const SKILL_ICONS = [
   { Icon: SiReact, className: 'text-cyan-400', style: { animationDelay: '0s' } },
   { Icon: SiJavascript, className: 'text-yellow-400', style: { animationDelay: '-5s' } },
   { Icon: SiFirebase, className: 'text-orange-400', style: { animationDelay: '-10s' } },
-  { Icon: SiAmazonaws, className: 'text-orange-500', style: { animationDelay: '-15s' } },
+  { Icon: SiAmazon, className: 'text-orange-500', style: { animationDelay: '-15s' } },
   { Icon: SiNodedotjs, className: 'text-green-400', style: { animationDelay: '-20s' } },
   { Icon: SiPython, className: 'text-blue-400', style: { animationDelay: '-25s' } },
 ];
