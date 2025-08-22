@@ -24,7 +24,7 @@ export default function SecuritySection() {
 
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="relative h-[480px] w-[480px] flex items-center justify-center">
-          <Lock className="h-32 w-32 text-primary text-glow-primary z-10" />
+          <Lock className="h-32 w-32 text-primary text-glow-primary" />
           {codeSnippets.map(({ code, style }, index) => (
             <div key={index} className="absolute top-1/2 left-1/2 code-orbit" style={style}>
               <code className="font-code text-sm text-accent text-glow-accent whitespace-nowrap p-2 rounded-md bg-background/50 backdrop-blur-sm">
