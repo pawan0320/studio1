@@ -2,55 +2,30 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 
 const projects = [
   {
-    title: "Healthcare Booking",
-    description: "A platform for booking healthcare appointments, with features for doctors and patients.",
+    title: "Healthcare Booking Platform",
+    description: "A comprehensive platform for booking healthcare appointments, with dedicated features for both doctors and patients.",
     image: "https://placehold.co/600x400.png",
     hint: "healthcare doctor",
-    tags: ["React", "Firebase", "Node.js"],
+    tags: ["React", "Firebase", "Node.js", "System Design"],
     link: "#",
   },
   {
-    title: "Brain Tumor Detection",
-    description: "An AI model that detects brain tumors from MRI scans with high accuracy.",
-    image: "https://placehold.co/600x400.png",
-    hint: "brain mri",
-    tags: ["Python", "TensorFlow", "Keras"],
-    link: "#",
-  },
-  {
-    title: "IoT Smart Home",
-    description: "A system to control and monitor home appliances using IoT devices.",
+    title: "IoT Smart Home Automation",
+    description: "A system to control and monitor home appliances remotely using IoT devices, built on Raspberry Pi.",
     image: "https://placehold.co/600x400.png",
     hint: "smart home",
-    tags: ["Raspberry Pi", "Python", "MQTT"],
+    tags: ["IoT", "Raspberry Pi", "Python", "MQTT"],
     link: "#",
   },
   {
-    title: "AI Chess Bot",
-    description: "A chess engine that uses reinforcement learning to play against human players.",
-    image: "https://placehold.co/600x400.png",
-    hint: "chess game",
-    tags: ["Python", "Pygame", "AI"],
-    link: "#",
-  },
-  {
-    title: "Digital Twins",
-    description: "Creating a digital replica of physical assets for real-time monitoring and simulation.",
+    title: "Digital Twin Simulation",
+    description: "Developed a digital replica of physical assets for real-time monitoring, analysis, and simulation.",
     image: "https://placehold.co/600x400.png",
     hint: "digital twin",
-    tags: ["IoT", "Azure", "Simulation"],
-    link: "#",
-  },
-  {
-    title: "Crop Recommendation",
-    description: "An AI-powered system that recommends crops based on soil and climate data.",
-    image: "https://placehold.co/600x400.png",
-    hint: "agriculture farm",
-    tags: ["Machine Learning", "Python", "Flask"],
+    tags: ["IoT", "Azure", "Simulation", "Data Analytics"],
     link: "#",
   },
 ];
@@ -59,7 +34,7 @@ export default function ProjectsSection() {
   return (
     <section id="projects" className="container mx-auto px-4 py-16 md:py-24">
       <div className="text-center">
-        <h2 className="font-headline text-4xl font-bold tracking-tighter text-glow-primary sm:text-5xl">My Projects</h2>
+        <h2 className="font-headline text-4xl font-bold tracking-tighter text-glow-primary sm:text-5xl">My Past Work</h2>
         <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
           A selection of projects where I've turned complex problems into elegant solutions.
         </p>
