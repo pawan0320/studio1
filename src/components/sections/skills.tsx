@@ -1,5 +1,5 @@
 import { Card } from "@/components/ui/card";
-import { BrainCircuit, Code, Database, Server, Wind, Bot, Star, Shield, Cloud, LucideIcon, FileJson, GitCommit, Braces, Smartphone, Globe } from 'lucide-react';
+import { BrainCircuit, Code, Database, Server, Wind, Bot, Star, Shield, Cloud, LucideIcon, FileJson, GitCommit, Braces, Smartphone, Globe, Award } from 'lucide-react';
 
 const skillsByCategory: { category: string; skills: { name: string; icon: LucideIcon }[] }[] = [
     {
@@ -47,10 +47,7 @@ const skillsByCategory: { category: string; skills: { name: string; icon: Lucide
     {
         category: 'AI/ML',
         skills: [
-            { name: 'TensorFlow', icon: BrainCircuit },
-            { name: 'PyTorch', icon: BrainCircuit },
-            { name: 'Scikit-learn', icon: BrainCircuit },
-            { name: 'LLMs', icon: BrainCircuit },
+            { name: 'ML Fundamentals Certified', icon: Award },
         ]
     },
 ];
