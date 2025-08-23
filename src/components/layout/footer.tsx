@@ -4,7 +4,7 @@ import Link from 'next/link';
 const SOCIAL_LINKS = [
   { href: 'https://github.com/pawan0320', icon: Github, label: 'GitHub' },
   { href: 'https://www.linkedin.com/in/pawan-sai-kodali-4b6293287', icon: Linkedin, label: 'LinkedIn' },
-  { href: 'https://x.com', icon: X, label: 'X' },
+  { href: 'https://x.com/pawa31600', icon: X, label: 'X' },
 ];
 
 export default function Footer() {
