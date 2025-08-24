@@ -1,9 +1,9 @@
 
 import { FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import type { ReactNode } from 'react';
+import SplineWrapper from '@/components/sections/spline-wrapper';
 
-export default function HeroSection({ children }: { children: ReactNode }) {
+export default function HeroSection() {
   return (
     <section id="hero" className="relative h-screen w-full flex items-center justify-center overflow-hidden">
        <div className="absolute inset-0 bg-background">
@@ -43,7 +43,7 @@ export default function HeroSection({ children }: { children: ReactNode }) {
           </div>
         </div>
         <div className="h-[400px] lg:h-[600px] w-full">
-            {children}
+            <SplineWrapper scene="https://prod.spline.design/6yYT5VyxwufgIzCv/scene.splinecode" />
         </div>
       </div>
     </section>

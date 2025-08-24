@@ -1,12 +1,9 @@
-
 'use client';
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { BotIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { useAuth } from '@/hooks/use-auth';
-import { Button } from '@/components/ui/button';
 
 const NAV_LINKS = [
   { href: '/#skills', label: 'Skills' },
@@ -17,7 +14,6 @@ const NAV_LINKS = [
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
-  const { user, logout } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {

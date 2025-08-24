@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useAuth } from '@/hooks/use-auth';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -13,35 +12,29 @@ export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const { login, user } = useAuth();
   const router = useRouter();
   const { toast } = useToast();
-
-  if (user) {
-    router.push('/admin');
-    return null;
-  }
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    try {
-      await login(email, password);
-      router.push('/admin');
-      toast({
-        title: 'Success!',
-        description: 'Logged in successfully.',
-      });
-    } catch (error) {
-      console.error(error);
-      toast({
-        variant: 'destructive',
-        title: 'Login Failed',
-        description: 'Invalid email or password.',
-      });
-    } finally {
-      setIsLoading(false);
-    }
+    // Mock login
+    setTimeout(() => {
+        if (email === 'admin@example.com' && password === 'password') {
+            router.push('/admin');
+            toast({
+                title: 'Success!',
+                description: 'Logged in successfully.',
+            });
+        } else {
+            toast({
+                variant: 'destructive',
+                title: 'Login Failed',
+                description: 'Invalid email or password.',
+            });
+        }
+        setIsLoading(false);
+    }, 1000);
   };
 
   return (
