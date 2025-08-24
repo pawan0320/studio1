@@ -4,6 +4,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
+import { ScrollArea } from "../ui/scroll-area";
 
 export interface Project {
   id: string;
@@ -114,32 +115,34 @@ export default function ProjectsSection({ setSelectedProject }: ProjectsSectionP
           A selection of projects where I've turned complex problems into elegant solutions. Click a project to learn more and try the demos.
         </p>
       </div>
-      <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {projects.map((project) => (
-          <div key={project.id} className="block group cursor-pointer" onClick={() => handleProjectClick(project)}>
-            <Card className="h-full bg-card border-primary/20 overflow-hidden tilt-card">
-              <CardHeader>
-                <div className="aspect-video relative overflow-hidden rounded-t-lg -mt-6 -mx-6">
-                   <Image 
-                     src={project.image} 
-                     alt={project.title}
-                     fill
-                     className="object-cover transition-transform duration-300 group-hover:scale-105"
-                     data-ai-hint={project.hint}
-                    />
-                </div>
-                <CardTitle className="mt-6 text-2xl font-headline group-hover:text-primary transition-colors">{project.title}</CardTitle>
-                <CardDescription>{project.description}</CardDescription>
-              </CardHeader>
-              <CardContent className="flex flex-wrap gap-2">
-                {project.tags.map((tag) => (
-                  <Badge key={tag} variant="secondary" className="bg-primary/10 text-primary border-primary/20">{tag}</Badge>
-                ))}
-              </CardContent>
-            </Card>
-          </div>
-        ))}
-      </div>
+      <ScrollArea className="mt-12 h-[70vh]">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 pr-4">
+          {projects.map((project) => (
+            <div key={project.id} className="block group cursor-pointer" onClick={() => handleProjectClick(project)}>
+              <Card className="h-full bg-card border-primary/20 overflow-hidden tilt-card">
+                <CardHeader>
+                  <div className="aspect-video relative overflow-hidden rounded-t-lg -mt-6 -mx-6">
+                    <Image 
+                      src={project.image} 
+                      alt={project.title}
+                      fill
+                      className="object-cover transition-transform duration-300 group-hover:scale-105"
+                      data-ai-hint={project.hint}
+                      />
+                  </div>
+                  <CardTitle className="mt-6 text-2xl font-headline group-hover:text-primary transition-colors">{project.title}</CardTitle>
+                  <CardDescription>{project.description}</CardDescription>
+                </CardHeader>
+                <CardContent className="flex flex-wrap gap-2">
+                  {project.tags.map((tag) => (
+                    <Badge key={tag} variant="secondary" className="bg-primary/10 text-primary border-primary/20">{tag}</Badge>
+                  ))}
+                </CardContent>
+              </Card>
+            </div>
+          ))}
+        </div>
+      </ScrollArea>
     </section>
   );
 }
