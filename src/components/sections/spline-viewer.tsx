@@ -1,24 +1,20 @@
 'use client';
 
 import Script from 'next/script';
-import { useState } from 'react';
 
 export default function SplineViewer() {
-  const [isLoaded, setIsLoaded] = useState(false);
-
   return (
     <>
       <Script
         src="https://unpkg.com/@splinetool/viewer@1.10.51/build/spline-viewer.js"
         type="module"
-        onLoad={() => setIsLoaded(true)}
+        strategy="lazyOnload"
       />
-      {isLoaded && (
-        <spline-viewer
-          url="https://prod.spline.design/9prYyFJAbaItPspb/scene.splinecode"
-          style={{ width: '100%', height: '100%', borderRadius: '1rem' }}
-        />
-      )}
+      <spline-viewer
+        url="https://prod.spline.design/9prYyFJAbaItPspb/scene.splinecode"
+        events-target="global"
+        style={{ width: '100%', height: '100%', borderRadius: '1rem' }}
+      />
     </>
   );
 }
