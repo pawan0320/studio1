@@ -58,7 +58,16 @@ const projects: Project[] = [
     hint: "stock market chart",
     tags: ["AI", "Machine Learning", "LSTM", "TensorFlow"],
     githubUrl: "#",
-    linkedinUrl: "#",
+    demoUrl: "#ai-playground",
+  },
+  {
+    id: "sign-language",
+    title: "Sign Language Recognition & Translation",
+    description: "A mobile app that translates sign language into text and speech in real-time, built with React Native.",
+    image: "https://placehold.co/600x400.png",
+    hint: "sign language mobile app",
+    tags: ["AI", "Computer Vision", "React Native", "TensorFlow Lite"],
+    githubUrl: "#",
   },
   {
     id: "coffee-shop",
