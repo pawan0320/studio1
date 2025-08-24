@@ -17,6 +17,16 @@ export interface Project {
 }
 
 const projects: Project[] = [
+   {
+    id: "brain-tumor",
+    title: "Brain Tumor Detection using DenseNet",
+    description: "An AI model that detects and classifies brain tumors from MRI scans with 99.2% accuracy using the DenseNet architecture.",
+    image: "https://placehold.co/600x400.png",
+    hint: "brain mri",
+    tags: ["AI", "Machine Learning", "DenseNet", "TensorFlow"],
+    githubUrl: "#",
+    linkedinUrl: "#",
+  },
   {
     id: "coffee-shop",
     title: "Brewed Awakening Coffee Shop Website",
