@@ -3,7 +3,7 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Leaf, TestTube, BrainCircuit, Loader2 } from "lucide-react";
+import { Leaf, TestTube, BrainCircuit, Loader2, LineChart as LineChartIcon } from "lucide-react";
 import { useState, useRef, useEffect, type FormEvent, useMemo } from 'react';
 import { getPortfolioAnswer } from "@/app/actions";
 import { useToast } from "@/hooks/use-toast";
@@ -14,6 +14,7 @@ import type { Project } from "./projects";
 import ProjectDisplay from "./project-display";
 import BrainTumorDemo from "./brain-tumor-demo";
 import HandGestureDemo from "./hand-gesture-demo";
+import StockPredictionDemo from "./stock-prediction-demo";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 
@@ -318,23 +319,6 @@ const PlaygroundChat = () => {
   );
 }
 
-const playgroundDemos = {
-  chat: {
-    id: "chat",
-    title: "AI Chat",
-    description: "Send a prompt to the Gemini API and get a direct response. This is a general-purpose chat to demonstrate the model's capabilities.",
-    Icon: BrainCircuit,
-    component: <PlaygroundChat />
-  },
-  crop: {
-    id: "crop",
-    title: "Crop Recommendation System",
-    description: "An AI-powered system that recommends the best crop to plant based on soil composition and environmental factors. Adjust the sliders to get a recommendation.",
-    Icon: Leaf,
-    component: <CropRecommender />
-  }
-};
-
 interface AiPlaygroundProps {
   selectedProject: Project | null;
 }
@@ -351,11 +335,14 @@ export default function AiPlayground({ selectedProject }: AiPlaygroundProps) {
     if (projectId === 'crop-recommender') {
         return <CropRecommender />;
     }
+    if (projectId === 'stock-prediction') {
+        return <StockPredictionDemo />;
+    }
     // For other projects, show the generic display
     return <ProjectDisplay project={selectedProject!} />;
   };
   
-  const isProjectWithDemo = selectedProject?.id === 'brain-tumor' || selectedProject?.id === 'hand-gesture' || selectedProject?.id === 'crop-recommender';
+  const isProjectWithDemo = selectedProject?.id === 'brain-tumor' || selectedProject?.id === 'hand-gesture' || selectedProject?.id === 'crop-recommender' || selectedProject?.id === 'stock-prediction';
 
   return (
     <section id="ai-playground" className="bg-card/30 py-16 md:py-24">
@@ -373,7 +360,7 @@ export default function AiPlayground({ selectedProject }: AiPlaygroundProps) {
              <ProjectDisplay project={selectedProject} />
           ) : (
             <Tabs defaultValue="chat" className="w-full">
-              <TabsList className="grid w-full grid-cols-2">
+              <TabsList className="grid w-full grid-cols-3">
                 <TabsTrigger value="chat">
                     <BrainCircuit className="mr-2 h-5 w-5" />
                     AI Chat
@@ -381,6 +368,10 @@ export default function AiPlayground({ selectedProject }: AiPlaygroundProps) {
                 <TabsTrigger value="crop">
                     <Leaf className="mr-2 h-5 w-5" />
                     Crop Recommendation
+                </TabsTrigger>
+                <TabsTrigger value="stock">
+                    <LineChartIcon className="mr-2 h-5 w-5" />
+                    Stock Prediction
                 </TabsTrigger>
               </TabsList>
               <TabsContent value="chat">
@@ -394,8 +385,8 @@ export default function AiPlayground({ selectedProject }: AiPlaygroundProps) {
                          <Leaf className="h-8 w-8 text-accent" />
                       </div>
                       <div>
-                        <CardTitle className="text-2xl font-headline text-glow-accent">{playgroundDemos.crop.title}</CardTitle>
-                        <CardDescription className="pt-2">{playgroundDemos.crop.description}</CardDescription>
+                        <CardTitle className="text-2xl font-headline text-glow-accent">Crop Recommendation System</CardTitle>
+                        <CardDescription className="pt-2">An AI-powered system that recommends the best crop to plant based on soil composition and environmental factors. Adjust the sliders to get a recommendation.</CardDescription>
                       </div>
                     </div>
                   </CardHeader>
@@ -404,6 +395,9 @@ export default function AiPlayground({ selectedProject }: AiPlaygroundProps) {
                   </CardContent>
                 </Card>
               </TabsContent>
+              <TabsContent value="stock">
+                <StockPredictionDemo />
+              </TabsContent>
             </Tabs>
           )}
         </div>
@@ -411,5 +405,3 @@ export default function AiPlayground({ selectedProject }: AiPlaygroundProps) {
     </section>
   );
 }
-
-    
