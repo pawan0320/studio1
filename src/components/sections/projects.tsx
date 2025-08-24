@@ -80,6 +80,16 @@ const projects: Project[] = [
     githubUrl: "#",
     demoUrl: "#ai-playground",
   },
+   {
+    id: "drug-discovery",
+    title: "Drug Discovery with Deep Learning",
+    description: "Utilizing deep learning models to predict molecular properties and identify potential drug candidates, accelerating the discovery process.",
+    image: "https://placehold.co/600x400.png",
+    hint: "molecule drug discovery",
+    tags: ["AI", "Deep Learning", "Bioinformatics", "PyTorch"],
+    githubUrl: "#",
+    demoUrl: "#ai-playground",
+  },
   {
     id: "coffee-shop",
     title: "Brewed Awakening Coffee Shop Website",
