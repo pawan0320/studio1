@@ -3,7 +3,7 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Leaf, TestTube, BrainCircuit, Loader2, LineChart as LineChartIcon } from "lucide-react";
+import { Leaf, TestTube, BrainCircuit, Loader2, LineChart as LineChartIcon, FlaskConical } from "lucide-react";
 import { useState, useRef, useEffect, type FormEvent, useMemo } from 'react';
 import { getPortfolioAnswer } from "@/app/actions";
 import { useToast } from "@/hooks/use-toast";
@@ -17,6 +17,7 @@ import HandGestureDemo from "./hand-gesture-demo";
 import StockPredictionDemo from "./stock-prediction-demo";
 import SignLanguageDemo from "./sign-language-demo";
 import ProstheticControlDemo from "./prosthetic-control-demo";
+import DrugDiscoveryDemo from "./drug-discovery-demo";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 
@@ -346,11 +347,14 @@ export default function AiPlayground({ selectedProject }: AiPlaygroundProps) {
      if (projectId === 'prosthetic-control') {
       return <ProstheticControlDemo />;
     }
+     if (projectId === 'drug-discovery') {
+      return <DrugDiscoveryDemo />;
+    }
     // For other projects, show the generic display
     return <ProjectDisplay project={selectedProject!} />;
   };
   
-  const isProjectWithDemo = selectedProject?.id && ['brain-tumor', 'hand-gesture', 'crop-recommender', 'stock-prediction', 'sign-language', 'prosthetic-control'].includes(selectedProject.id);
+  const isProjectWithDemo = selectedProject?.id && ['brain-tumor', 'hand-gesture', 'crop-recommender', 'stock-prediction', 'sign-language', 'prosthetic-control', 'drug-discovery'].includes(selectedProject.id);
 
 
   return (
@@ -369,7 +373,7 @@ export default function AiPlayground({ selectedProject }: AiPlaygroundProps) {
              <ProjectDisplay project={selectedProject} />
           ) : (
             <Tabs defaultValue="chat" className="w-full">
-              <TabsList className="grid w-full grid-cols-3">
+              <TabsList className="grid w-full grid-cols-4">
                 <TabsTrigger value="chat">
                     <BrainCircuit className="mr-2 h-5 w-5" />
                     AI Chat
@@ -381,6 +385,10 @@ export default function AiPlayground({ selectedProject }: AiPlaygroundProps) {
                 <TabsTrigger value="stock">
                     <LineChartIcon className="mr-2 h-5 w-5" />
                     Stock Prediction
+                </TabsTrigger>
+                 <TabsTrigger value="drug">
+                    <FlaskConical className="mr-2 h-5 w-5" />
+                    Drug Discovery
                 </TabsTrigger>
               </TabsList>
               <TabsContent value="chat">
@@ -406,6 +414,9 @@ export default function AiPlayground({ selectedProject }: AiPlaygroundProps) {
               </TabsContent>
               <TabsContent value="stock">
                 <StockPredictionDemo />
+              </TabsContent>
+              <TabsContent value="drug">
+                <DrugDiscoveryDemo />
               </TabsContent>
             </Tabs>
           )}

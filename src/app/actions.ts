@@ -7,6 +7,7 @@ import { classifyBrainTumor } from '@/ai/flows/brain-tumor-flow';
 import { analyzeHandGesture } from '@/ai/flows/hand-gesture-flow';
 import { getStockPrediction } from '@/ai/flows/stock-prediction-flow';
 import { analyzeSignGesture } from '@/ai/flows/sign-language-flow';
+import { analyzeMolecule } from '@/ai/flows/drug-discovery-flow';
 import type { z } from 'zod';
 
 type PortfolioQueryInput = z.infer<typeof import('@/ai/flows/tool-suggestion').PortfolioQueryInput>;
@@ -15,6 +16,7 @@ type BrainTumorInput = z.infer<typeof import('@/ai/flows/brain-tumor-flow').Brai
 type HandGestureInput = z.infer<typeof import('@/ai/flows/hand-gesture-flow').HandGestureInput>;
 type StockPredictionInput = z.infer<typeof import('@/ai/flows/stock-prediction-flow').StockPredictionInput>;
 type SignLanguageInput = z.infer<typeof import('@/ai/flows/sign-language-flow').SignLanguageInput>;
+type MoleculeAnalysisInput = z.infer<typeof import('@/ai/flows/drug-discovery-flow').MoleculeAnalysisInput>;
 
 
 export async function getPortfolioAnswer(input: PortfolioQueryInput) {
@@ -79,6 +81,17 @@ export async function getSignLanguageAnalysis(input: SignLanguageInput) {
         return { success: true, data: result };
     } catch (error) {
         console.error('Error fetching sign language analysis:', error);
+        const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred.';
+        return { success: false, error: `I'm sorry, I encountered an issue. ${errorMessage}` };
+    }
+}
+
+export async function getMoleculeAnalysis(input: MoleculeAnalysisInput) {
+    try {
+        const result = await analyzeMolecule(input);
+        return { success: true, data: result };
+    } catch (error) {
+        console.error('Error fetching molecule analysis:', error);
         const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred.';
         return { success: false, error: `I'm sorry, I encountered an issue. ${errorMessage}` };
     }
