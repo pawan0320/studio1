@@ -12,6 +12,30 @@ const certificates = [
     name: "General Resume & All Certificates",
     url: "https://drive.google.com/file/d/1V1QLhGdQt3amrdFOTivPQyLaS9lNPNTH/view?usp=sharing",
   },
+  {
+    name: "Cpp in Spoken Tutorial Project, IIT Bombay",
+    url: "https://drive.google.com/file/d/1RKlqqSKtgyztwSCPiVnY1xI4L1NSql0Y/view?usp=sharing",
+  },
+  {
+    name: "C in Spoken Tutorial Project, IIT Bombay",
+    url: "https://drive.google.com/file/d/1JYI6onMcyHb17g-k_QUZ8surno8VQiDY/view?usp=sharing",
+  },
+  {
+    name: "Master Data Management for Beginners in tcsioN",
+    url: "https://drive.google.com/file/d/1QZX9loHlK_KgZk1oeLghJzxMJ-vS7fSc/view?usp=sharing",
+  },
+  {
+    name: "AI & Prompt Engineering intern at VaultofCodes",
+    url: "https://drive.google.com/file/d/12mPChkaRPQ_2_Zho67KbGxjgtBYSy4ak/view?usp=sharing",
+  },
+  {
+    name: "Python Foundation Certification in Infosys SpringBoard",
+    url: "https://drive.google.com/file/d/146mwnDmif_TeiLhdeuzrWnnGzSo5smcM/view?usp=sharing",
+  },
+  {
+    name: "Advanced Full Stack Development Internship Program in Innomatics Research Labs",
+    url: "https://drive.google.com/file/d/1WOeuTfaFZ_-tnvaYAzmai92INIwAwQ5y/view?usp=sharing",
+  },
 ];
 
 export default function CertificatesSection() {
