@@ -44,14 +44,14 @@ export default function ProjectDisplay({ project }: ProjectDisplayProps) {
                             View on LinkedIn
                         </Link>
                     </Button>
-                ) : (
+                ) : project.demoUrl ? (
                     <Button asChild className="w-full bg-accent text-accent-foreground hover:bg-accent/90 glow-accent">
-                        <Link href={project.demoUrl!} target="_blank" rel="noopener noreferrer">
+                        <Link href={project.demoUrl} target="_blank" rel="noopener noreferrer">
                             <ExternalLink className="mr-2 h-5 w-5" />
                             View Live Demo
                         </Link>
                     </Button>
-                )}
+                ) : null}
             </div>
         </CardContent>
       </div>
