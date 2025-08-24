@@ -22,7 +22,6 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet" />
-        <Script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.51/build/spline-viewer.js" async />
       </head>
       <body className="font-body antialiased">
         {children}
