@@ -34,12 +34,12 @@ const simulateEmg = (time: number, nChannels: number) => {
 
 // Simple moving average to smooth out the data for visualization
 const movingAverage = (data: any[], size: number) => {
-  const smoothed = data.map((_, i, arr) => {
+  const smoothed = data.map((d, i, arr) => {
     const start = Math.max(0, i - size);
     const end = i + 1;
     const subset = arr.slice(start, end);
     const sum = subset.reduce((acc, val) => acc + val.value, 0);
-    return { time: val.time, value: sum / subset.length };
+    return { time: d.time, value: sum / subset.length };
   });
   return smoothed;
 };
@@ -137,7 +137,11 @@ export default function ProstheticControlDemo() {
 
   useEffect(() => {
     requestRef.current = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(requestRef.current!);
+    return () => {
+      if (requestRef.current) {
+        cancelAnimationFrame(requestRef.current);
+      }
+    };
   }, [isPaused, targetAngle]);
 
 
