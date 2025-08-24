@@ -3,6 +3,19 @@
 
 import { useEffect, useState } from 'react';
 
+// By declaring this namespace, we're telling TypeScript about the custom <spline-viewer> element.
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      'spline-viewer': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
+        url: string;
+        'events-target'?: string;
+      };
+    }
+  }
+}
+
+
 const SplineViewer = () => {
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -16,7 +29,11 @@ const SplineViewer = () => {
     document.body.appendChild(script);
 
     return () => {
-      document.body.removeChild(script);
+      // Clean up the script when the component unmounts
+      const existingScript = document.querySelector('script[src="https://unpkg.com/@splinetool/viewer@1.10.51/build/spline-viewer.js"]');
+      if (existingScript) {
+        document.body.removeChild(existingScript);
+      }
     };
   }, []);
 
