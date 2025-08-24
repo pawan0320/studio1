@@ -15,6 +15,9 @@ import { useToast } from "@/hooks/use-toast";
 import { Input } from "../ui/input";
 import { CornerDownLeft, Bot, User } from "lucide-react";
 import { cn } from "@/lib/utils";
+import type { Project } from "./projects";
+import ProjectDisplay from "./project-display";
+
 
 // Crop Recommendation Form
 const CropFormSchema = z.object({
@@ -143,8 +146,8 @@ const PlaygroundChat = () => {
        const errorMessage: Message = { role: 'assistant', content: 'An unexpected error occurred.' };
        setMessages((prev) => [...prev, errorMessage]);
        toast({
-          variant: 'destructive',
-          title: 'AI Error',
+          variant: "destructive",
+          title: "AI Error",
           description: error instanceof Error ? error.message : 'Failed to connect to the AI assistant.',
         });
     } finally {
@@ -190,15 +193,16 @@ const PlaygroundChat = () => {
   );
 }
 
-// Main Playground Section
 const playgroundDemos = [
   {
+    id: "chat",
     title: "AI Chat",
     description: "Send a prompt to the Gemini API and get a direct response. This is a general-purpose chat to demonstrate the model's capabilities.",
     Icon: BrainCircuit,
     component: <PlaygroundChat />
   },
   {
+    id: "crop",
     title: "Crop Recommendation System",
     description: "An AI-powered system that recommends the best crop to plant based on soil composition and environmental factors. Adjust the sliders to get a recommendation.",
     Icon: Leaf,
@@ -206,37 +210,47 @@ const playgroundDemos = [
   }
 ];
 
-export default function AiPlayground() {
+interface AiPlaygroundProps {
+  selectedProject: Project | null;
+}
+
+export default function AiPlayground({ selectedProject }: AiPlaygroundProps) {
   return (
     <section id="ai-playground" className="bg-card/30 py-16 md:py-24">
       <div className="container mx-auto px-4">
         <div className="text-center">
           <h2 className="font-headline text-4xl font-bold tracking-tighter text-glow-accent sm:text-5xl">AI Playground</h2>
           <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
-            Interact with live AI models.
+            {selectedProject ? `Viewing Project: ${selectedProject.title}` : "Interact with live AI models."}
           </p>
         </div>
-        <div className="mt-12 grid gap-8 md:grid-cols-1 lg:grid-cols-2">
-          {playgroundDemos.map((demo) => (
-            <Card key={demo.title} className="h-full bg-card border-accent/20 overflow-hidden tilt-card glow-accent shadow-2xl shadow-accent/10 flex flex-col">
-              <CardHeader>
-                <div className="flex items-start gap-4">
-                  <div className="bg-accent/20 p-3 rounded-full">
-                     <demo.Icon className="h-8 w-8 text-accent" />
-                  </div>
-                  <div>
-                    <CardTitle className="text-2xl font-headline text-glow-accent">{demo.title}</CardTitle>
-                    <CardDescription className="pt-2">{demo.description}</CardDescription>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent className="flex-grow flex flex-col">
-                <div className="flex-grow">
-                 {demo.component}
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+        <div className="mt-12">
+          {selectedProject ? (
+            <ProjectDisplay project={selectedProject} />
+          ) : (
+            <div className="grid gap-8 md:grid-cols-1 lg:grid-cols-2">
+              {playgroundDemos.map((demo) => (
+                <Card key={demo.id} className="h-full bg-card border-accent/20 overflow-hidden tilt-card glow-accent shadow-2xl shadow-accent/10 flex flex-col">
+                  <CardHeader>
+                    <div className="flex items-start gap-4">
+                      <div className="bg-accent/20 p-3 rounded-full">
+                         <demo.Icon className="h-8 w-8 text-accent" />
+                      </div>
+                      <div>
+                        <CardTitle className="text-2xl font-headline text-glow-accent">{demo.title}</CardTitle>
+                        <CardDescription className="pt-2">{demo.description}</CardDescription>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="flex-grow flex flex-col">
+                    <div className="flex-grow">
+                     {demo.component}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </section>
