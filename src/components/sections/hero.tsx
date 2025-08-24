@@ -3,13 +3,7 @@
 
 import { FileText, Handshake } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Skeleton } from '@/components/ui/skeleton';
-import dynamic from 'next/dynamic';
-
-const Spline = dynamic(() => import('@splinetool/react-spline'), {
-  ssr: false,
-  loading: () => <Skeleton className="w-full h-full" />,
-});
+import SplineViewer from './spline-viewer';
 
 export default function HeroSection() {
   return (
@@ -41,7 +35,7 @@ export default function HeroSection() {
           </div>
         </div>
         <div className="relative h-[400px] lg:h-[500px] w-full hidden lg:flex items-center justify-center">
-          <Spline scene="https://prod.spline.design/LoHHEBuLeMZZgrMk/scene.splinecode" />
+          <SplineViewer />
         </div>
       </div>
     </section>

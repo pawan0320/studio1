@@ -11,7 +11,7 @@ export default function SplineViewer() {
         strategy="lazyOnload"
       />
       <spline-viewer
-        url="https://prod.spline.design/9prYyFJAbaItPspb/scene.splinecode"
+        url="https://prod.spline.design/LoHHEBuLeMZZgrMk/scene.splinecode"
         events-target="global"
         style={{ width: '100%', height: '100%', borderRadius: '1rem' }}
       />
