@@ -1,6 +1,6 @@
 'use client';
 
-import { FileText } from 'lucide-react';
+import { FileText, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export default function HeroSection() {
@@ -24,6 +24,12 @@ export default function HeroSection() {
               <a href="https://drive.google.com/file/d/1V1QLhGdQt3amrdFOTivPQyLaS9lNPNTH/view?usp=sharing" target="_blank" rel="noopener noreferrer">
                 <FileText className="mr-2"/>
                 Resume
+              </a>
+            </Button>
+            <Button asChild size="lg" variant="outline">
+              <a href="#contact">
+                <MessageCircle className="mr-2" />
+                Get in Touch
               </a>
             </Button>
           </div>
