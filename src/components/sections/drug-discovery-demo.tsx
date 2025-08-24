@@ -34,7 +34,7 @@ export default function DrugDiscoveryDemo() {
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
   
-  const moleculeImageUrl = analyzedSmiles ? `https://www.chemspider.com/ImagesHandler.ashx?id=0&w=400&h=400&smi=${encodeURIComponent(analyzedSmiles)}` : '';
+  const moleculeImageUrl = analyzedSmiles ? `https://www.chemspider.com/ImagesHandler.ashx?w=400&h=400&smi=${encodeURIComponent(analyzedSmiles)}` : '';
 
 
   const handleSubmit = async (e: React.FormEvent) => {
