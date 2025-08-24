@@ -1,56 +1,47 @@
-
 'use client';
 
-import { useEffect, useState } from 'react';
-
-// By declaring this namespace, we're telling TypeScript about the custom <spline-viewer> element.
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      'spline-viewer': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
-        url: string;
-        'events-target'?: string;
-      };
-    }
-  }
-}
-
+import React, { useEffect, useRef } from 'react';
 
 const SplineViewer = () => {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Ensure this runs only on the client side
+    if (typeof window === 'undefined' || !containerRef.current) {
+      return;
+    }
+
+    // Prevent adding multiple viewers
+    if (containerRef.current.querySelector('spline-viewer')) {
+      return;
+    }
+
     const script = document.createElement('script');
     script.type = 'module';
     script.src = 'https://unpkg.com/@splinetool/viewer@1.10.51/build/spline-viewer.js';
+    script.async = true;
+
     script.onload = () => {
-      setIsLoaded(true);
+      if (containerRef.current) {
+        const splineViewer = document.createElement('spline-viewer');
+        splineViewer.setAttribute('url', 'https://prod.spline.design/h3Ws-VBARUkWGJqd/scene.splinecode');
+        splineViewer.setAttribute('events-target', 'global');
+        
+        // Clear the container and append the new viewer
+        containerRef.current.innerHTML = '';
+        containerRef.current.appendChild(splineViewer);
+      }
     };
-    document.body.appendChild(script);
+    
+    document.head.appendChild(script);
 
     return () => {
-      // Clean up the script when the component unmounts
-      const existingScript = document.querySelector('script[src="https://unpkg.com/@splinetool/viewer@1.10.51/build/spline-viewer.js"]');
-      if (existingScript) {
-        document.body.removeChild(existingScript);
-      }
+      // Cleanup script on component unmount
+      document.head.removeChild(script);
     };
   }, []);
 
-  return (
-    <div className="w-full h-full">
-      {isLoaded ? (
-        <spline-viewer
-          url="https://prod.spline.design/h3Ws-VBARUkWGJqd/scene.splinecode"
-          events-target="global"
-        ></spline-viewer>
-      ) : (
-        <div className="w-full h-full flex items-center justify-center">
-          <p>Loading 3D Scene...</p>
-        </div>
-      )}
-    </div>
-  );
+  return <div ref={containerRef} className="w-full h-full" />;
 };
 
 export default SplineViewer;
