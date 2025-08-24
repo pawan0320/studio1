@@ -50,6 +50,16 @@ const projects: Project[] = [
     demoUrl: "#ai-playground",
   },
   {
+    id: "stock-prediction",
+    title: "Live Stock Price Prediction",
+    description: "An LSTM model to predict stock prices based on historical data. Showcases time-series analysis.",
+    image: "https://placehold.co/600x400.png",
+    hint: "stock market chart",
+    tags: ["AI", "Machine Learning", "LSTM", "TensorFlow"],
+    githubUrl: "#",
+    linkedinUrl: "#",
+  },
+  {
     id: "coffee-shop",
     title: "Brewed Awakening Coffee Shop Website",
     description: "A modern and responsive website for a local coffee shop, featuring a menu, gallery, and contact information.",
