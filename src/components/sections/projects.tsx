@@ -26,7 +26,7 @@ const projects: Project[] = [
     hint: "brain mri",
     tags: ["AI", "Machine Learning", "TensorFlow", "Genkit"],
     githubUrl: "https://github.com/pawan0320/Brain-Tumor-Detection",
-    demoUrl: "#", // The demo is shown in the AI playground
+    demoUrl: "#ai-playground",
   },
   {
     id: "hand-gesture",
@@ -37,7 +37,17 @@ const projects: Project[] = [
     tags: ["AI", "Computer Vision", "OpenCV", "Python", "Genkit"],
     githubUrl: "#",
     linkedinUrl: "#",
-    demoUrl: "#",
+    demoUrl: "#ai-playground",
+  },
+  {
+    id: "crop-recommender",
+    title: "AI Crop Recommendation System",
+    description: "A rule-based system that recommends the best crop to plant based on soil and environmental factors. Click to try the live demo!",
+    image: "https://placehold.co/600x400.png",
+    hint: "agriculture farm",
+    tags: ["AI", "Client-Side", "React", "Rule-Based"],
+    githubUrl: "#",
+    demoUrl: "#ai-playground",
   },
   {
     id: "coffee-shop",
@@ -78,9 +88,11 @@ interface ProjectsSectionProps {
 export default function ProjectsSection({ setSelectedProject }: ProjectsSectionProps) {
   const handleProjectClick = (project: Project) => {
     setSelectedProject(project);
-    const playground = document.getElementById('ai-playground');
-    if (playground) {
-      playground.scrollIntoView({ behavior: 'smooth' });
+    if (project.demoUrl === '#ai-playground') {
+        const playground = document.getElementById('ai-playground');
+        if (playground) {
+          playground.scrollIntoView({ behavior: 'smooth' });
+        }
     }
   };
   

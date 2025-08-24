@@ -4,13 +4,8 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Leaf, TestTube, BrainCircuit, Loader2 } from "lucide-react";
-import { useForm, type SubmitHandler } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Slider } from "@/components/ui/slider";
-import { useState, useRef, useEffect, type FormEvent } from 'react';
-import { getCropRecommendation, getPortfolioAnswer } from "@/app/actions";
+import { useState, useRef, useEffect, type FormEvent, useMemo } from 'react';
+import { getPortfolioAnswer } from "@/app/actions";
 import { useToast } from "@/hooks/use-toast";
 import { Input } from "../ui/input";
 import { CornerDownLeft, Bot, User } from "lucide-react";
@@ -21,87 +16,201 @@ import BrainTumorDemo from "./brain-tumor-demo";
 import HandGestureDemo from "./hand-gesture-demo";
 
 
-// Crop Recommendation Form
-const CropFormSchema = z.object({
-  nitrogen: z.number().min(0).max(150),
-  phosphorus: z.number().min(0).max(150),
-  potassium: z.number().min(0).max(250),
-  temperature: z.number().min(0).max(50),
-  humidity: z.number().min(0).max(100),
-  ph: z.number().min(0).max(14),
-  rainfall: z.number().min(0).max(350),
-});
-type CropFormValues = z.infer<typeof CropFormSchema>;
+// New Crop Recommendation Component
+const FEATURES = [
+  { key: "ph", label: "Soil pH", min: 4.5, max: 9.0, step: 0.1, help: "Acidic (low) to alkaline (high)" },
+  { key: "n", label: "Nitrogen (N) [kg/ha]", min: 0, max: 140, step: 1, help: "Available nitrogen in soil" },
+  { key: "p", label: "Phosphorus (P) [kg/ha]", min: 0, max: 120, step: 1, help: "Available phosphorus in soil" },
+  { key: "k", label: "Potassium (K) [kg/ha]", min: 0, max: 200, step: 1, help: "Available potassium in soil" },
+  { key: "rain", label: "Rainfall [mm/month]", min: 0, max: 600, step: 5, help: "Approx. monthly rainfall" },
+  { key: "temp", label: "Temperature [°C]", min: 5, max: 45, step: 0.5, help: "Ambient temperature" },
+  { key: "hum", label: "Humidity [%]", min: 10, max: 100, step: 1, help: "Relative humidity" },
+];
 
-const CropRecommendationForm = () => {
-    const [loading, setLoading] = useState(false);
-    const [result, setResult] = useState<string | null>(null);
-    const { toast } = useToast();
+const CROPS = [
+  { name: "Rice", ideal: { ph: [5.5, 7.0], n: [60, 120], p: [40, 80], k: [60, 120], rain: [150, 400], temp: [20, 35], hum: [60, 90] }, notes: "Thrives in warm, humid climates with standing water / high rainfall." },
+  { name: "Wheat", ideal: { ph: [6.0, 7.5], n: [60, 100], p: [30, 60], k: [40, 80], rain: [30, 80], temp: [12, 25], hum: [30, 60] }, notes: "Cool-season cereal; moderate inputs and lower humidity." },
+  { name: "Maize", ideal: { ph: [5.8, 7.2], n: [60, 120], p: [40, 80], k: [40, 100], rain: [60, 150], temp: [18, 32], hum: [40, 70] }, notes: "Warm-season; avoids extremes of drought or waterlogging." },
+  { name: "Cotton", ideal: { ph: [5.8, 8.0], n: [50, 100], p: [30, 60], k: [60, 120], rain: [50, 120], temp: [20, 35], hum: [40, 60] }, notes: "Prefers warm, relatively dry conditions; sensitive to waterlogging." },
+  { name: "Sugarcane", ideal: { ph: [6.0, 7.5], n: [80, 140], p: [40, 80], k: [80, 160], rain: [120, 300], temp: [20, 35], hum: [60, 85] }, notes: "High biomass crop; needs warmth and moisture." },
+  { name: "Soybean", ideal: { ph: [6.0, 7.5], n: [20, 60], p: [40, 80], k: [40, 80], rain: [60, 150], temp: [20, 30], hum: [50, 70] }, notes: "Legume; moderate rainfall and neutral pH preferred." },
+  { name: "Potato", ideal: { ph: [5.0, 6.5], n: [60, 120], p: [60, 100], k: [80, 160], rain: [60, 150], temp: [10, 24], hum: [50, 70] }, notes: "Cooler temperatures; slightly acidic soils reduce scab." },
+  { name: "Tomato", ideal: { ph: [6.0, 7.0], n: [40, 80], p: [40, 80], k: [60, 120], rain: [40, 120], temp: [18, 30], hum: [50, 70] }, notes: "Warm but not hot; well-drained soils." },
+  { name: "Banana", ideal: { ph: [5.5, 7.0], n: [80, 140], p: [40, 80], k: [100, 180], rain: [150, 400], temp: [22, 35], hum: [70, 95] }, notes: "Tropical; high humidity, high K requirement." },
+  { name: "Groundnut", ideal: { ph: [5.8, 7.0], n: [20, 60], p: [30, 60], k: [30, 60], rain: [40, 120], temp: [22, 32], hum: [40, 60] }, notes: "Legume; prefers light, well-drained soils." },
+  { name: "Pulses (Lentil/Gram)", ideal: { ph: [6.0, 7.5], n: [10, 40], p: [20, 50], k: [20, 60], rain: [20, 80], temp: [15, 28], hum: [30, 60] }, notes: "Low N requirement due to fixation; cool to moderate climates." },
+  { name: "Tea", ideal: { ph: [4.5, 5.5], n: [60, 120], p: [40, 80], k: [60, 120], rain: [150, 400], temp: [18, 30], hum: [70, 95] }, notes: "Acid-loving perennial; high rainfall and humidity." },
+  { name: "Coffee", ideal: { ph: [5.0, 6.5], n: [40, 100], p: [30, 60], k: [40, 120], rain: [100, 250], temp: [15, 28], hum: [60, 85] }, notes: "Subtropical; prefers shade, moderate humidity, no frost." },
+];
 
-    const form = useForm<CropFormValues>({
-        resolver: zodResolver(CropFormSchema),
-        defaultValues: {
-            nitrogen: 90,
-            phosphorus: 50,
-            potassium: 50,
-            temperature: 25,
-            humidity: 70,
-            ph: 7,
-            rainfall: 100,
-        },
-    });
+const defaultState = { ph: 6.5, n: 80, p: 50, k: 80, rain: 120, temp: 26, hum: 65 };
 
-    const onSubmit: SubmitHandler<CropFormValues> = async (data) => {
-        setLoading(true);
-        setResult(null);
-        try {
-            const res = await getCropRecommendation(data);
-            if (res.success && res.data) {
-                setResult(res.data.crop);
-            } else {
-                toast({
-                    variant: "destructive",
-                    title: "AI Error",
-                    description: res.error || "Could not get a recommendation.",
-                });
-            }
-        } catch (error) {
-            toast({
-                variant: "destructive",
-                title: "Submission Error",
-                description: "Failed to connect to the AI model.",
-            });
-        } finally {
-            setLoading(false);
-        }
-    };
+function normalize(value: number, min: number, max: number) {
+  if (max === min) return 0.5;
+  const v = (value - min) / (max - min);
+  return Math.max(0, Math.min(1, v));
+}
+
+function clampToRange(value: number, [rmin, rmax]: number[]) {
+  if (value < rmin) return rmin;
+  if (value > rmax) return rmax;
+  return value;
+}
+
+function scoreCrop(user: typeof defaultState, crop: (typeof CROPS)[0]) {
+  let total = 0;
+  let count = 0;
+
+  for (const f of FEATURES) {
+    const key = f.key as keyof typeof defaultState;
+    const [imin, imax] = crop.ideal[key];
+    const u = user[key];
+
+    const within = u >= imin && u <= imax;
+    let dist = 0;
+    if (!within) {
+      const nearest = clampToRange(u, [imin, imax]);
+      dist = Math.abs(u - nearest) / (f.max - f.min);
+    }
+    const featureScore = 1 - dist;
+    total += featureScore;
+    count += 1;
+  }
+
+  const avg = total / Math.max(1, count);
+  return avg;
+}
+
+function formatReason(user: typeof defaultState, crop: (typeof CROPS)[0]) {
+  const bad = [];
+  for (const f of FEATURES) {
+    const key = f.key as keyof typeof defaultState;
+    const [imin, imax] = crop.ideal[key];
+    const u = user[key];
+    if (u < imin) bad.push(`${f.label} low (ideal ${imin}-${imax})`);
+    else if (u > imax) bad.push(`${f.label} high (ideal ${imin}-${imax})`);
+  }
+  if (bad.length === 0) return "Your conditions are within ideal ranges for this crop.";
+  return `Needs attention: ${bad.slice(0, 3).join(", ")}${bad.length > 3 ? ", …" : ""}`;
+}
+
+const CropRecommender = () => {
+    const [state, setState] = useState(defaultState);
+    const [showAll, setShowAll] = useState(false);
+
+    const results = useMemo(() => {
+        const scored = CROPS.map((c) => ({
+            crop: c,
+            score: scoreCrop(state, c),
+            reason: formatReason(state, c),
+        }));
+        scored.sort((a, b) => b.score - a.score);
+        return scored;
+    }, [state]);
+
+    function update(key: string, value: number) {
+        setState((s) => ({ ...s, [key]: value }));
+    }
+
+    function reset() {
+        setState(defaultState);
+    }
+
+    const top = showAll ? results : results.slice(0, 3);
 
     return (
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <FormField control={form.control} name="nitrogen" render={({ field }) => ( <FormItem> <FormLabel>Nitrogen</FormLabel> <FormControl><Slider min={0} max={150} step={1} value={[field.value]} onValueChange={(v) => field.onChange(v[0])} /></FormControl> <FormMessage /> </FormItem> )} />
-                <FormField control={form.control} name="phosphorus" render={({ field }) => ( <FormItem> <FormLabel>Phosphorus</FormLabel> <FormControl><Slider min={0} max={150} step={1} value={[field.value]} onValueChange={(v) => field.onChange(v[0])} /></FormControl> <FormMessage /> </FormItem> )} />
-                <FormField control={form.control} name="potassium" render={({ field }) => ( <FormItem> <FormLabel>Potassium</FormLabel> <FormControl><Slider min={0} max={250} step={1} value={[field.value]} onValueChange={(v) => field.onChange(v[0])} /></FormControl> <FormMessage /> </FormItem> )} />
-                <FormField control={form.control} name="temperature" render={({ field }) => ( <FormItem> <FormLabel>Temperature (°C)</FormLabel> <FormControl><Slider min={0} max={50} step={0.1} value={[field.value]} onValueChange={(v) => field.onChange(v[0])} /></FormControl> <FormMessage /> </FormItem> )} />
-                <FormField control={form.control} name="humidity" render={({ field }) => ( <FormItem> <FormLabel>Humidity (%)</FormLabel> <FormControl><Slider min={0} max={100} step={1} value={[field.value]} onValueChange={(v) => field.onChange(v[0])} /></FormControl> <FormMessage /> </FormItem> )} />
-                <FormField control={form.control} name="ph" render={({ field }) => ( <FormItem> <FormLabel>Soil pH</FormLabel> <FormControl><Slider min={0} max={14} step={0.1} value={[field.value]} onValueChange={(v) => field.onChange(v[0])} /></FormControl> <FormMessage /> </FormItem> )} />
-            </div>
-            <FormField control={form.control} name="rainfall" render={({ field }) => ( <FormItem> <FormLabel>Rainfall (mm)</FormLabel> <FormControl><Slider min={0} max={350} step={1} value={[field.value]} onValueChange={(v) => field.onChange(v[0])} /></FormControl> <FormMessage /> </FormItem> )} />
-            <div className="flex flex-col items-center gap-4">
-                <Button type="submit" disabled={loading} size="lg" className="glow-primary w-full md:w-auto">
-                    {loading ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : <TestTube className="mr-2 h-5 w-5" />}
-                    Recommend Crop
-                </Button>
-                {result && (
-                    <div className="text-center p-4 bg-primary/10 rounded-lg w-full">
-                        <p className="text-muted-foreground">The model recommends:</p>
-                        <p className="text-2xl font-bold text-primary text-glow-primary">{result}</p>
+        <div className="text-foreground">
+            <div className="grid md:grid-cols-5 gap-6 items-start">
+                <section className="md:col-span-2 space-y-5">
+                    <div className="flex items-center justify-between">
+                        <h2 className="text-xl font-semibold">Your Conditions</h2>
+                        <div className="flex gap-2">
+                            <Button onClick={reset} variant="outline" size="sm">Reset</Button>
+                            <Button onClick={() => setShowAll((v) => !v)} variant="outline" size="sm">
+                                {showAll ? "Top 3" : "Show All"}
+                            </Button>
+                        </div>
                     </div>
-                )}
+
+                    {FEATURES.map((f) => (
+                        <div key={f.key} className="p-4 bg-muted/50 rounded-lg">
+                            <div className="flex items-center justify-between mb-2">
+                                <label className="font-medium text-sm" htmlFor={`slider-${f.key}`}>{f.label}</label>
+                                <Input
+                                    id={`number-${f.key}`}
+                                    type="number"
+                                    value={state[f.key as keyof typeof state]}
+                                    min={f.min}
+                                    max={f.max}
+                                    step={f.step}
+                                    onChange={(e) => update(f.key, Number(e.target.value))}
+                                    className="w-28 h-8 text-xs bg-background"
+                                />
+                            </div>
+                            <input
+                                id={`slider-${f.key}`}
+                                type="range"
+                                min={f.min}
+                                max={f.max}
+                                step={f.step}
+                                value={state[f.key as keyof typeof state]}
+                                onChange={(e) => update(f.key, Number(e.target.value))}
+                                className="w-full h-2 bg-primary/20 rounded-lg appearance-none cursor-pointer range-lg accent-primary"
+                            />
+                             <div className="flex justify-between text-xs text-muted-foreground mt-1">
+                                <span>{f.min}</span>
+                                <span>{f.help}</span>
+                                <span>{f.max}</span>
+                            </div>
+                        </div>
+                    ))}
+                </section>
+
+                <section className="md:col-span-3">
+                    <h2 className="text-xl font-semibold mb-3">Recommendations</h2>
+                    <div className="grid lg:grid-cols-2 gap-4">
+                        {top.map(({ crop, score, reason }, i) => (
+                            <article key={crop.name} className="p-4 bg-muted/50 rounded-lg">
+                                <div className="flex items-start justify-between">
+                                    <div>
+                                        <div className="text-sm text-muted-foreground">Rank #{i + 1}</div>
+                                        <h3 className="text-lg font-semibold">{crop.name}</h3>
+                                    </div>
+                                    <div className="text-right">
+                                        <div className="text-xs text-muted-foreground">Suitability</div>
+                                        <div className="text-2xl font-bold text-accent">{Math.round(score * 100)}%</div>
+                                    </div>
+                                </div>
+                                <dl className="grid grid-cols-2 gap-2 mt-3 text-sm">
+                                    {FEATURES.map((f) => {
+                                        const key = f.key as keyof typeof defaultState;
+                                        const [imin, imax] = crop.ideal[key];
+                                        const u = state[key];
+                                        const ok = u >= imin && u <= imax;
+                                        return (
+                                            <div key={`${crop.name}-${f.key}`} className="flex items-center gap-2">
+                                                <span className={`inline-block w-2 h-2 rounded-full ${ok ? 'bg-green-500' : 'bg-amber-500'}`}></span>
+                                                <div>
+                                                    <div className="text-muted-foreground text-xs">{f.label}</div>
+                                                    <div className="text-[10px] text-muted-foreground/70">Ideal {imin}–{imax} • Yours {u}</div>
+                                                </div>
+                                            </div>
+                                        );
+                                    })}
+                                </dl>
+                                <p className="mt-3 text-xs text-muted-foreground">{reason}</p>
+                            </article>
+                        ))}
+                    </div>
+                     <div className="mt-4 p-4 bg-accent/10 text-accent-foreground rounded-lg border border-accent/20">
+                        <p className="text-xs">
+                            <TestTube className="inline-block w-4 h-4 mr-2" />
+                            <span className="font-medium">How this works:</span> For each crop, we compare your inputs to its ideal ranges to compute a suitability score.
+                        </p>
+                    </div>
+                </section>
             </div>
-        </form>
-      </Form>
+        </div>
     );
 };
 
@@ -208,7 +317,7 @@ const playgroundDemos = [
     title: "Crop Recommendation System",
     description: "An AI-powered system that recommends the best crop to plant based on soil composition and environmental factors. Adjust the sliders to get a recommendation.",
     Icon: Leaf,
-    component: <CropRecommendationForm />
+    component: <CropRecommender />
   }
 ];
 
@@ -225,9 +334,15 @@ export default function AiPlayground({ selectedProject }: AiPlaygroundProps) {
      if (projectId === 'hand-gesture') {
       return <HandGestureDemo />;
     }
+    if (projectId === 'crop-recommender') {
+        const CropDemo = playgroundDemos.find(d => d.id === 'crop')?.component;
+        return CropDemo ? <div className="lg:col-span-2">{CropDemo}</div> : <ProjectDisplay project={selectedProject!} />;
+    }
     // For other projects, show the generic display
     return <ProjectDisplay project={selectedProject!} />;
   };
+  
+  const isProjectWithDemo = selectedProject?.id === 'brain-tumor' || selectedProject?.id === 'hand-gesture' || selectedProject?.id === 'crop-recommender';
 
   return (
     <section id="ai-playground" className="bg-card/30 py-16 md:py-24">
@@ -239,8 +354,10 @@ export default function AiPlayground({ selectedProject }: AiPlaygroundProps) {
           </p>
         </div>
         <div className="mt-12">
-          {selectedProject ? (
+          {selectedProject && isProjectWithDemo ? (
             getProjectDemo(selectedProject.id)
+          ) : selectedProject ? (
+             <ProjectDisplay project={selectedProject} />
           ) : (
             <div className="grid gap-8 md:grid-cols-1 lg:grid-cols-2">
               {playgroundDemos.map((demo) => (
