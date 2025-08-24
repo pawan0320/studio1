@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils';
 
 const NAV_LINKS = [
   { href: '/#skills', label: 'Skills' },
-  { href: '/#security', label: 'Security' },
+  { href: '/#certificates', label: 'Certificates' },
   { href: '/#projects', label: 'Projects' },
   { href: '/#contact', label: 'Contact' },
 ];
