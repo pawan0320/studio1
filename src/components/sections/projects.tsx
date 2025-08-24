@@ -68,6 +68,16 @@ const projects: Project[] = [
     hint: "sign language mobile app",
     tags: ["AI", "Computer Vision", "React Native", "TensorFlow Lite"],
     githubUrl: "#",
+    demoUrl: "#ai-playground",
+  },
+  {
+    id: "prosthetic-control",
+    title: "AI-Powered Prosthetic Control",
+    description: "Developing an intuitive control system for prosthetic limbs using AI to interpret muscle signals, allowing for more natural and fluid movements.",
+    image: "https://placehold.co/600x400.png",
+    hint: "prosthetic arm robotics",
+    tags: ["AI", "Robotics", "Signal Processing", "Machine Learning"],
+    githubUrl: "#",
   },
   {
     id: "coffee-shop",
