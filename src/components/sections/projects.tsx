@@ -78,6 +78,7 @@ const projects: Project[] = [
     hint: "prosthetic arm robotics",
     tags: ["AI", "Robotics", "Signal Processing", "Machine Learning"],
     githubUrl: "#",
+    demoUrl: "#ai-playground",
   },
   {
     id: "coffee-shop",
