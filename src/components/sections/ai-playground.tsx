@@ -18,6 +18,7 @@ import { cn } from "@/lib/utils";
 import type { Project } from "./projects";
 import ProjectDisplay from "./project-display";
 import BrainTumorDemo from "./brain-tumor-demo";
+import HandGestureDemo from "./hand-gesture-demo";
 
 
 // Crop Recommendation Form
@@ -221,7 +222,10 @@ export default function AiPlayground({ selectedProject }: AiPlaygroundProps) {
     if (projectId === 'brain-tumor') {
       return <BrainTumorDemo />;
     }
-    // We can add other project-specific demos here in the future
+     if (projectId === 'hand-gesture') {
+      return <HandGestureDemo />;
+    }
+    // For other projects, show the generic display
     return <ProjectDisplay project={selectedProject!} />;
   };
 

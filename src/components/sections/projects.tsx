@@ -21,22 +21,23 @@ const projects: Project[] = [
    {
     id: "brain-tumor",
     title: "Brain Tumor Detection using DenseNet",
-    description: "An AI model that detects and classifies brain tumors from MRI scans with 99.2% accuracy using the DenseNet architecture. Click to try the live demo!",
+    description: "An AI model that detects and classifies brain tumors from MRI scans with 99.2% accuracy. Click to try the live demo!",
     image: "https://placehold.co/600x400.png",
     hint: "brain mri",
-    tags: ["AI", "Machine Learning", "DenseNet", "TensorFlow", "Genkit"],
+    tags: ["AI", "Machine Learning", "TensorFlow", "Genkit"],
     githubUrl: "https://github.com/pawan0320/Brain-Tumor-Detection",
     demoUrl: "#", // The demo is shown in the AI playground
   },
   {
     id: "hand-gesture",
     title: "Hand Gesture & Movement Recognition for Human-Computer Interaction",
-    description: "A system that recognizes hand gestures and movements to provide a natural and intuitive way to interact with computers.",
+    description: "A system that recognizes hand gestures and movements to provide a natural way to interact with computers. Click for a live demo!",
     image: "https://placehold.co/600x400.png",
     hint: "hand gesture recognition",
-    tags: ["AI", "Computer Vision", "OpenCV", "Python"],
+    tags: ["AI", "Computer Vision", "OpenCV", "Python", "Genkit"],
     githubUrl: "#",
     linkedinUrl: "#",
+    demoUrl: "#",
   },
   {
     id: "coffee-shop",
