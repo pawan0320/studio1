@@ -1,10 +1,17 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { FileText, Handshake } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Spline from '@splinetool/react-spline';
 
 export default function HeroSection() {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   return (
     <section id="hero" className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-background">
       <div className="container mx-auto px-4 z-10 grid lg:grid-cols-2 gap-8 items-center">
@@ -34,7 +41,7 @@ export default function HeroSection() {
           </div>
         </div>
         <div className="h-[400px] lg:h-[600px] w-full flex items-center justify-center">
-          <Spline scene="https://prod.spline.design/dsLuDpikyTdypqfx/scene.splinecode" />
+          {isMounted && <Spline scene="https://prod.spline.design/dsLuDpikyTdypqfx/scene.splinecode" />}
         </div>
       </div>
     </section>
