@@ -29,6 +29,16 @@ const projects: Project[] = [
     demoUrl: "#", // The demo is shown in the AI playground
   },
   {
+    id: "hand-gesture",
+    title: "Hand Gesture & Movement Recognition for Human-Computer Interaction",
+    description: "A system that recognizes hand gestures and movements to provide a natural and intuitive way to interact with computers.",
+    image: "https://placehold.co/600x400.png",
+    hint: "hand gesture recognition",
+    tags: ["AI", "Computer Vision", "OpenCV", "Python"],
+    githubUrl: "#",
+    linkedinUrl: "#",
+  },
+  {
     id: "coffee-shop",
     title: "Brewed Awakening Coffee Shop Website",
     description: "A modern and responsive website for a local coffee shop, featuring a menu, gallery, and contact information.",
