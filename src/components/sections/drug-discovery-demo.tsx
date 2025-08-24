@@ -7,10 +7,9 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 import { getMoleculeAnalysis } from '@/app/actions';
-import Image from 'next/image';
 import { FlaskConical, Loader2, TestTube } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '../ui/alert';
-import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis, BarChart, Bar, Line, ComposedChart, Legend, LineChart } from 'recharts';
+import { AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis, BarChart, Bar, Legend, LineChart } from 'recharts';
 
 interface MoleculeResult {
     molecularWeight: number;
@@ -48,9 +47,6 @@ export default function DrugDiscoveryDemo() {
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
   
-  const moleculeImageUrl = analyzedSmiles ? `https://www.chemspider.com/ImagesHandler.ashx?w=400&h=400&smi=${encodeURIComponent(analyzedSmiles)}` : null;
-
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!smiles.trim()) {
@@ -145,16 +141,8 @@ export default function DrugDiscoveryDemo() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
              {result && analyzedSmiles ? (
                 <div className="space-y-4 animate-in fade-in-50">
-                     <Card className="bg-muted/50 p-4">
-                        <h3 className="text-lg font-bold text-center mb-2">Molecule Structure</h3>
-                        {moleculeImageUrl && (
-                             <div className="aspect-square bg-white rounded-md p-2">
-                                <Image src={moleculeImageUrl} alt={`Structure of ${analyzedSmiles}`} width={400} height={400} className="object-contain w-full h-full" unoptimized/>
-                             </div>
-                        )}
-                    </Card>
                     <Card className="bg-muted/50 p-4 space-y-2">
-                        <h3 className="text-lg font-bold">AI Analysis</h3>
+                        <h3 className="text-lg font-bold">AI Analysis for {analyzedSmiles}</h3>
                         <dl className="space-y-2">
                             <PropertyDisplay label="Molecular Wt." value={result.molecularWeight.toFixed(2)} />
                             <PropertyDisplay label="LogP" value={result.logP.toFixed(2)} />
@@ -173,7 +161,7 @@ export default function DrugDiscoveryDemo() {
                 !isLoading && <div className="text-center text-muted-foreground italic p-8 md:col-span-2">Enter a SMILES string to begin analysis.</div>
             )}
 
-            {result && (
+            {(result || !isLoading) && (
                 <div className="space-y-4 animate-in fade-in-50">
                     <Card className="bg-muted/50 p-4">
                         <h3 className="text-lg font-semibold text-center mb-2">Model Performance (Simulated)</h3>
@@ -185,8 +173,8 @@ export default function DrugDiscoveryDemo() {
                                     <YAxis label={{ value: 'True Positive Rate', angle: -90, position: 'insideLeft' }}/>
                                     <Tooltip />
                                     <Legend verticalAlign="top" height={36} formatter={() => "ROC Curve (AUC = 0.92)"}/>
-                                    <Line type="monotone" dataKey="tpr" stroke="hsl(var(--accent))" strokeWidth={2} dot={false} />
-                                    <Line type="dashed" dataKey="fpr" stroke="hsl(var(--muted-foreground))" strokeWidth={1} dot={false} />
+                                    <LineChart type="monotone" dataKey="tpr" stroke="hsl(var(--accent))" strokeWidth={2} dot={false} />
+                                    <LineChart type="dashed" dataKey="fpr" stroke="hsl(var(--muted-foreground))" strokeWidth={1} dot={false} />
                                 </LineChart>
                             </ResponsiveContainer>
                         </div>
