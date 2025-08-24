@@ -68,8 +68,11 @@ const pyramidRows = [
 
 export default function SkillsSection() {
   return (
-    <section id="skills" className="container mx-auto px-4 py-16 md:py-24">
-      <div className="text-center">
+    <section id="skills" className="container relative mx-auto px-4 py-16 md:py-24 overflow-hidden">
+      <div className="absolute inset-0 z-0 opacity-10">
+        <spline-viewer url="https://prod.spline.design/h3Ws-VBARUkWGJqd/scene.splinecode"></spline-viewer>
+      </div>
+      <div className="relative z-10 text-center">
         <h2 className="font-headline text-4xl font-bold tracking-tighter text-glow-primary sm:text-5xl">
           Making apps with modern technologies
         </h2>
@@ -78,7 +81,7 @@ export default function SkillsSection() {
         </p>
       </div>
 
-      <div className="mt-16 flex flex-col items-center gap-8">
+      <div className="relative z-10 mt-16 flex flex-col items-center gap-8">
         {pyramidRows.map((row, rowIndex) => (
           <div key={rowIndex} className="flex justify-center gap-8 flex-wrap">
             {row.map((tech) => (
