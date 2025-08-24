@@ -1,4 +1,3 @@
-
 'use client';
 
 import { FileText, Handshake } from 'lucide-react';
@@ -35,7 +34,7 @@ export default function HeroSection() {
           </div>
         </div>
         <div className="relative h-[400px] lg:h-[500px] w-full flex items-center justify-center">
-          <SplineViewer />
+          <SplineViewer url="https://prod.spline.design/LoHHEBuLeMZZgrMk/scene.splinecode" />
         </div>
       </div>
     </section>

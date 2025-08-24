@@ -1,10 +1,13 @@
-
 'use client';
 
 import Script from 'next/script';
 import { useState, useEffect } from 'react';
 
-export default function SplineViewer() {
+interface SplineViewerProps {
+  url: string;
+}
+
+export default function SplineViewer({ url }: SplineViewerProps) {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -20,7 +23,7 @@ export default function SplineViewer() {
       />
       {isMounted && (
         <spline-viewer
-          url="https://prod.spline.design/LoHHEBuLeMZZgrMk/scene.splinecode"
+          url={url}
           events-target="global"
           style={{ width: '100%', height: '100%', borderRadius: '1rem' }}
         />
