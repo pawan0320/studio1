@@ -15,6 +15,7 @@ import ProjectDisplay from "./project-display";
 import BrainTumorDemo from "./brain-tumor-demo";
 import HandGestureDemo from "./hand-gesture-demo";
 import StockPredictionDemo from "./stock-prediction-demo";
+import SignLanguageDemo from "./sign-language-demo";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 
@@ -338,11 +339,14 @@ export default function AiPlayground({ selectedProject }: AiPlaygroundProps) {
     if (projectId === 'stock-prediction') {
         return <StockPredictionDemo />;
     }
+     if (projectId === 'sign-language') {
+      return <SignLanguageDemo />;
+    }
     // For other projects, show the generic display
     return <ProjectDisplay project={selectedProject!} />;
   };
   
-  const isProjectWithDemo = selectedProject?.id === 'brain-tumor' || selectedProject?.id === 'hand-gesture' || selectedProject?.id === 'crop-recommender' || selectedProject?.id === 'stock-prediction';
+  const isProjectWithDemo = selectedProject?.id === 'brain-tumor' || selectedProject?.id === 'hand-gesture' || selectedProject?.id === 'crop-recommender' || selectedProject?.id === 'stock-prediction' || selectedProject?.id === 'sign-language';
 
   return (
     <section id="ai-playground" className="bg-card/30 py-16 md:py-24">
