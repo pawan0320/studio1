@@ -16,6 +16,12 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'www.chemspider.com',
+        port: '',
+        pathname: '/**',
+      }
     ],
   },
 };
