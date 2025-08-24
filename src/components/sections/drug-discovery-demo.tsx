@@ -29,11 +29,13 @@ const exampleSmiles = {
 
 export default function DrugDiscoveryDemo() {
   const [smiles, setSmiles] = useState(exampleSmiles['Aspirin']);
+  const [analyzedSmiles, setAnalyzedSmiles] = useState<string | null>(null);
   const [result, setResult] = useState<MoleculeResult | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
   
-  const moleculeImageUrl = `https://www.chemspider.com/ImagesHandler.ashx?id=0&w=400&h=400&smi=${encodeURIComponent(smiles)}`;
+  const moleculeImageUrl = analyzedSmiles ? `https://www.chemspider.com/ImagesHandler.ashx?id=0&w=400&h=400&smi=${encodeURIComponent(analyzedSmiles)}` : '';
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -48,11 +50,13 @@ export default function DrugDiscoveryDemo() {
 
     setIsLoading(true);
     setResult(null);
+    setAnalyzedSmiles(null);
 
     try {
       const res = await getMoleculeAnalysis({ smiles });
       if (res.success && res.data) {
         setResult(res.data);
+        setAnalyzedSmiles(smiles);
       } else {
         toast({
           variant: 'destructive',
@@ -124,13 +128,13 @@ export default function DrugDiscoveryDemo() {
             </div>
         )}
 
-        {result ? (
+        {result && analyzedSmiles ? (
             <div className="space-y-6 animate-in fade-in-50">
                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="p-4 bg-muted rounded-lg">
                          <h3 className="text-lg font-bold text-center mb-2">Molecule Structure</h3>
                          <div className="aspect-square bg-white rounded-md p-2">
-                            <Image src={moleculeImageUrl} alt={`Structure of ${smiles}`} width={400} height={400} className="object-contain w-full h-full" unoptimized/>
+                            <Image src={moleculeImageUrl} alt={`Structure of ${analyzedSmiles}`} width={400} height={400} className="object-contain w-full h-full" unoptimized/>
                          </div>
                     </div>
                     <div className="p-4 bg-muted rounded-lg space-y-2">
