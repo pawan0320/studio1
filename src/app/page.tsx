@@ -7,13 +7,16 @@ import ProjectsSection from '@/components/sections/projects';
 import AiPlayground from '@/components/sections/ai-playground';
 import ContactSection from '@/components/sections/contact';
 import Footer from '@/components/layout/footer';
+import SplineWrapper from '@/components/sections/spline-wrapper';
 
 export default function Home() {
   return (
     <>
       <Header />
       <main>
-        <HeroSection />
+        <HeroSection>
+          <SplineWrapper scene="https://prod.spline.design/6yYT5VyxwufgIzCv/scene.splinecode" />
+        </HeroSection>
         <SkillsSection />
         <SecuritySection />
         <ProjectsSection />
