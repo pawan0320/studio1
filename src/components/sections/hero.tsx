@@ -7,15 +7,15 @@ export default function HeroSection() {
     <section id="hero" className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 bg-background" />
       
-      <div className="container mx-auto grid lg:grid-cols-1 gap-8 items-center relative z-10 px-4">
-        <div className="text-center">
+      <div className="container mx-auto grid lg:grid-cols-2 gap-8 items-center relative z-10 px-4">
+        <div className="text-center lg:text-left">
            <h1 className="font-headline text-5xl font-bold tracking-tighter text-glow-primary md:text-7xl lg:text-8xl">
             Pawan Sai Kodali
           </h1>
-          <p className="mt-4 max-w-2xl mx-auto font-body text-lg text-muted-foreground md:text-xl">
+          <p className="mt-4 max-w-2xl mx-auto lg:mx-0 font-body text-lg text-muted-foreground md:text-xl">
             I’m a passionate Full-Stack Developer with experience in the MERN stack, AI-driven systems, and IoT projects. I’ve built real-time chat apps, intelligent robotics, and recognition platforms. Currently, I’m working on an Empowering Teacher Multi-Grade Class App and a Sign Language Recognition & Synthesis Software, focusing on building impactful and inclusive tech solutions.
           </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
+          <div className="mt-8 flex flex-wrap justify-center lg:justify-start gap-4">
             <Button asChild size="lg" className="glow-primary">
               <a href="#projects">View My Work</a>
             </Button>
@@ -29,6 +29,10 @@ export default function HeroSection() {
               <a href="#contact">Get In Touch</a>
             </Button>
           </div>
+        </div>
+        <div className="relative h-[400px] lg:h-[600px] w-full hidden lg:block">
+          <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.51/build/spline-viewer.js" async></script>
+          <spline-viewer url="https://prod.spline.design/h3Ws-VBARUkWGJqd/scene.splinecode"></spline-viewer>
         </div>
       </div>
     </section>
