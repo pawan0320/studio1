@@ -17,6 +17,7 @@ import { CornerDownLeft, Bot, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { Project } from "./projects";
 import ProjectDisplay from "./project-display";
+import BrainTumorDemo from "./brain-tumor-demo";
 
 
 // Crop Recommendation Form
@@ -215,18 +216,27 @@ interface AiPlaygroundProps {
 }
 
 export default function AiPlayground({ selectedProject }: AiPlaygroundProps) {
+  const getProjectDemo = (projectId: string | undefined) => {
+    if (!projectId) return null;
+    if (projectId === 'brain-tumor') {
+      return <BrainTumorDemo />;
+    }
+    // We can add other project-specific demos here in the future
+    return <ProjectDisplay project={selectedProject!} />;
+  };
+
   return (
     <section id="ai-playground" className="bg-card/30 py-16 md:py-24">
       <div className="container mx-auto px-4">
         <div className="text-center">
           <h2 className="font-headline text-4xl font-bold tracking-tighter text-glow-accent sm:text-5xl">AI Playground</h2>
           <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
-            {selectedProject ? `Viewing Project: ${selectedProject.title}` : "Interact with live AI models."}
+            {selectedProject ? `Viewing Demo: ${selectedProject.title}` : "Interact with live AI models."}
           </p>
         </div>
         <div className="mt-12">
           {selectedProject ? (
-            <ProjectDisplay project={selectedProject} />
+            getProjectDemo(selectedProject.id)
           ) : (
             <div className="grid gap-8 md:grid-cols-1 lg:grid-cols-2">
               {playgroundDemos.map((demo) => (

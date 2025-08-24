@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
-import { Github, Linkedin } from "lucide-react";
+import { Github, Linkedin, ExternalLink } from "lucide-react";
 
 interface ProjectDisplayProps {
   project: Project;
@@ -37,12 +37,21 @@ export default function ProjectDisplay({ project }: ProjectDisplayProps) {
                         View on GitHub
                     </Link>
                 </Button>
-                <Button asChild className="w-full bg-accent text-accent-foreground hover:bg-accent/90 glow-accent">
-                    <Link href={project.linkedinUrl} target="_blank" rel="noopener noreferrer">
-                        <Linkedin className="mr-2 h-5 w-5" />
-                        View on LinkedIn
-                    </Link>
-                </Button>
+                {project.linkedinUrl && project.linkedinUrl !== "#" ? (
+                    <Button asChild className="w-full bg-accent text-accent-foreground hover:bg-accent/90 glow-accent">
+                        <Link href={project.linkedinUrl} target="_blank" rel="noopener noreferrer">
+                            <Linkedin className="mr-2 h-5 w-5" />
+                            View on LinkedIn
+                        </Link>
+                    </Button>
+                ) : (
+                    <Button asChild className="w-full bg-accent text-accent-foreground hover:bg-accent/90 glow-accent">
+                        <Link href={project.demoUrl!} target="_blank" rel="noopener noreferrer">
+                            <ExternalLink className="mr-2 h-5 w-5" />
+                            View Live Demo
+                        </Link>
+                    </Button>
+                )}
             </div>
         </CardContent>
       </div>
