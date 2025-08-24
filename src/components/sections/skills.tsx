@@ -70,6 +70,9 @@ const pyramidRows = [
 export default function SkillsSection() {
   return (
     <section id="skills" className="container relative mx-auto px-4 py-16 md:py-24 overflow-hidden">
+        <div className="absolute inset-0 z-0 opacity-10">
+            <spline-viewer url="https://prod.spline.design/i1tRK-pKGiEbrmyA/scene.splinecode" />
+        </div>
       <div className="relative z-10 text-center">
         <h2 className="font-headline text-4xl font-bold tracking-tighter text-glow-primary sm:text-5xl">
           Making apps with modern technologies
@@ -104,3 +107,5 @@ export default function SkillsSection() {
     </section>
   );
 }
+
+    

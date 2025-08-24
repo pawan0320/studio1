@@ -24,6 +24,7 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet" />
       </head>
       <body className="font-body antialiased">
+        <Script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.51/build/spline-viewer.js" />
         {children}
         <ChatbotWidget />
         <Toaster />
@@ -31,3 +32,5 @@ export default function RootLayout({
     </html>
   );
 }
+
+    
