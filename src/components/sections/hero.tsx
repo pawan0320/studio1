@@ -1,14 +1,11 @@
 
 import { FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import SplineWrapper from '@/components/sections/spline-wrapper';
 
 export default function HeroSection() {
   return (
     <section id="hero" className="relative h-screen w-full flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0 bg-background">
-        <SplineWrapper scene="https://prod.spline.design/h3Ws-VBARUkWGJqd/scene.splinecode" />
-      </div>
+      <div className="absolute inset-0 bg-background" />
       
       <div className="container mx-auto grid lg:grid-cols-2 gap-8 items-center relative z-10 px-4">
         <div className="text-center lg:text-left">
@@ -34,7 +31,7 @@ export default function HeroSection() {
           </div>
         </div>
         <div className="h-[400px] lg:h-[600px] w-full hidden lg:block">
-            {/* The spline scene is now in the background */}
+            {/* Right column can be used for a static image or be left empty */}
         </div>
       </div>
     </section>
