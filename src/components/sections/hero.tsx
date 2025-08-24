@@ -34,7 +34,7 @@ export default function HeroSection() {
             </Button>
           </div>
         </div>
-        <div className="relative h-[400px] lg:h-[500px] w-full hidden lg:flex items-center justify-center">
+        <div className="relative h-[400px] lg:h-[500px] w-full flex items-center justify-center">
           <SplineViewer />
         </div>
       </div>

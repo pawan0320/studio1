@@ -1,8 +1,16 @@
+
 'use client';
 
 import Script from 'next/script';
+import { useState, useEffect } from 'react';
 
 export default function SplineViewer() {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   return (
     <>
       <Script
@@ -10,11 +18,13 @@ export default function SplineViewer() {
         type="module"
         strategy="lazyOnload"
       />
-      <spline-viewer
-        url="https://prod.spline.design/LoHHEBuLeMZZgrMk/scene.splinecode"
-        events-target="global"
-        style={{ width: '100%', height: '100%', borderRadius: '1rem' }}
-      />
+      {isMounted && (
+        <spline-viewer
+          url="https://prod.spline.design/LoHHEBuLeMZZgrMk/scene.splinecode"
+          events-target="global"
+          style={{ width: '100%', height: '100%', borderRadius: '1rem' }}
+        />
+      )}
     </>
   );
 }
