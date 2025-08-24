@@ -1,8 +1,7 @@
-'use client';
 
 import { FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import Spline from '@splinetool/react-spline/next';
+import SplineWrapper from './spline-wrapper';
 
 export default function HeroSection() {
   return (
@@ -44,7 +43,7 @@ export default function HeroSection() {
           </div>
         </div>
         <div className="h-[400px] lg:h-[600px] w-full">
-            <Spline scene="https://prod.spline.design/6yYT5VyxwufgIzCv/scene.splinecode" />
+            <SplineWrapper scene="https://prod.spline.design/6yYT5VyxwufgIzCv/scene.splinecode" />
         </div>
       </div>
     </section>
