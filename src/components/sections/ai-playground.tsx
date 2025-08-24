@@ -14,6 +14,7 @@ import type { Project } from "./projects";
 import ProjectDisplay from "./project-display";
 import BrainTumorDemo from "./brain-tumor-demo";
 import HandGestureDemo from "./hand-gesture-demo";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 
 // New Crop Recommendation Component
@@ -63,7 +64,7 @@ function scoreCrop(user: typeof defaultState, crop: (typeof CROPS)[0]) {
 
   for (const f of FEATURES) {
     const key = f.key as keyof typeof defaultState;
-    const [imin, imax] = crop.ideal[key];
+    const [imin, imax] = crop.ideal[key as keyof typeof crop.ideal];
     const u = user[key];
 
     const within = u >= imin && u <= imax;
@@ -85,7 +86,7 @@ function formatReason(user: typeof defaultState, crop: (typeof CROPS)[0]) {
   const bad = [];
   for (const f of FEATURES) {
     const key = f.key as keyof typeof defaultState;
-    const [imin, imax] = crop.ideal[key];
+    const [imin, imax] = crop.ideal[key as keyof typeof crop.ideal];
     const u = user[key];
     if (u < imin) bad.push(`${f.label} low (ideal ${imin}-${imax})`);
     else if (u > imax) bad.push(`${f.label} high (ideal ${imin}-${imax})`);
@@ -184,7 +185,7 @@ const CropRecommender = () => {
                                 <dl className="grid grid-cols-2 gap-2 mt-3 text-sm">
                                     {FEATURES.map((f) => {
                                         const key = f.key as keyof typeof defaultState;
-                                        const [imin, imax] = crop.ideal[key];
+                                        const [imin, imax] = crop.ideal[key as keyof typeof crop.ideal];
                                         const u = state[key];
                                         const ok = u >= imin && u <= imax;
                                         return (
@@ -267,59 +268,72 @@ const PlaygroundChat = () => {
   };
 
   return (
-     <div className="flex flex-col h-full bg-transparent">
-        <div className="flex-1 overflow-y-auto space-y-4 p-4 h-96 relative">
-          {messages.length === 0 && (
-              <div className="absolute inset-0 flex items-center justify-center">
-                  <p className="text-muted-foreground">Ask me anything!</p>
-              </div>
-          )}
-          {messages.map((msg, index) => (
-            <div key={index} className={cn('flex items-start gap-3', msg.role === 'user' ? 'justify-end' : 'justify-start' )}>
-              {msg.role === 'assistant' && (<div className="bg-primary/20 p-2 rounded-full"><Bot className="h-6 w-6 text-primary" /></div>)}
-              <div className={cn('max-w-sm rounded-lg px-4 py-2', msg.role === 'user' ? 'bg-primary text-primary-foreground' : 'bg-muted' )}>
-                <p className="text-sm whitespace-pre-wrap">{msg.content}</p>
-              </div>
-              {msg.role === 'user' && (<div className="bg-muted p-2 rounded-full"><User className="h-6 w-6" /></div>)}
+     <Card className="h-full bg-card/80 border-accent/20 overflow-hidden glow-accent shadow-2xl shadow-accent/10 flex flex-col">
+        <CardHeader>
+            <div className="flex items-start gap-4">
+                <div className="bg-accent/20 p-3 rounded-full">
+                    <BrainCircuit className="h-8 w-8 text-accent" />
+                </div>
+                <div>
+                    <CardTitle className="text-2xl font-headline text-glow-accent">AI Chat</CardTitle>
+                    <CardDescription className="pt-2">Send a prompt to the Gemini API and get a direct response. This is a general-purpose chat to demonstrate the model's capabilities.</CardDescription>
+                </div>
             </div>
-          ))}
-          {isLoading && (
-            <div className="flex items-start gap-3 justify-start">
-               <div className="bg-primary/20 p-2 rounded-full"><Bot className="h-6 w-6 text-primary" /></div>
-              <div className="bg-muted rounded-lg px-4 py-3 flex items-center">
-                <Loader2 className="h-5 w-5 animate-spin text-primary" />
-              </div>
+        </CardHeader>
+        <CardContent className="flex-grow flex flex-col p-0">
+             <div className="flex-1 overflow-y-auto space-y-4 p-4 h-96 relative">
+              {messages.length === 0 && (
+                  <div className="absolute inset-0 flex items-center justify-center">
+                      <p className="text-muted-foreground">Ask me anything!</p>
+                  </div>
+              )}
+              {messages.map((msg, index) => (
+                <div key={index} className={cn('flex items-start gap-3', msg.role === 'user' ? 'justify-end' : 'justify-start' )}>
+                  {msg.role === 'assistant' && (<div className="bg-primary/20 p-2 rounded-full"><Bot className="h-6 w-6 text-primary" /></div>)}
+                  <div className={cn('max-w-sm rounded-lg px-4 py-2', msg.role === 'user' ? 'bg-primary text-primary-foreground' : 'bg-muted' )}>
+                    <p className="text-sm whitespace-pre-wrap">{msg.content}</p>
+                  </div>
+                  {msg.role === 'user' && (<div className="bg-muted p-2 rounded-full"><User className="h-6 w-6" /></div>)}
+                </div>
+              ))}
+              {isLoading && (
+                <div className="flex items-start gap-3 justify-start">
+                   <div className="bg-primary/20 p-2 rounded-full"><Bot className="h-6 w-6 text-primary" /></div>
+                  <div className="bg-muted rounded-lg px-4 py-3 flex items-center">
+                    <Loader2 className="h-5 w-5 animate-spin text-primary" />
+                  </div>
+                </div>
+              )}
+              <div ref={messagesEndRef} />
             </div>
-          )}
-          <div ref={messagesEndRef} />
-        </div>
-        <form onSubmit={handleSubmit} className="flex items-center gap-2 p-4 border-t border-primary/20">
-          <Input value={input} onChange={(e) => setInput(e.target.value)} placeholder="Send a message..." disabled={isLoading} className="bg-background/50 focus:border-primary border-primary/50" />
-          <Button type="submit" disabled={isLoading} className="glow-primary">
-            {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <CornerDownLeft className="h-4 w-4" />}
-            <span className="sr-only">Send</span>
-          </Button>
-        </form>
-    </div>
+            <form onSubmit={handleSubmit} className="flex items-center gap-2 p-4 border-t border-primary/20">
+              <Input value={input} onChange={(e) => setInput(e.target.value)} placeholder="Send a message..." disabled={isLoading} className="bg-background/50 focus:border-primary border-primary/50" />
+              <Button type="submit" disabled={isLoading} className="glow-primary">
+                {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <CornerDownLeft className="h-4 w-4" />}
+                <span className="sr-only">Send</span>
+              </Button>
+            </form>
+        </CardContent>
+    </Card>
   );
 }
 
-const playgroundDemos = [
-  {
+const playgroundDemos = {
+  chat: {
     id: "chat",
     title: "AI Chat",
     description: "Send a prompt to the Gemini API and get a direct response. This is a general-purpose chat to demonstrate the model's capabilities.",
     Icon: BrainCircuit,
     component: <PlaygroundChat />
   },
-  {
+  crop: {
     id: "crop",
     title: "Crop Recommendation System",
     description: "An AI-powered system that recommends the best crop to plant based on soil composition and environmental factors. Adjust the sliders to get a recommendation.",
     Icon: Leaf,
     component: <CropRecommender />
   }
-];
+};
 
 interface AiPlaygroundProps {
   selectedProject: Project | null;
@@ -335,8 +349,7 @@ export default function AiPlayground({ selectedProject }: AiPlaygroundProps) {
       return <HandGestureDemo />;
     }
     if (projectId === 'crop-recommender') {
-        const CropDemo = playgroundDemos.find(d => d.id === 'crop')?.component;
-        return CropDemo ? <div className="lg:col-span-2">{CropDemo}</div> : <ProjectDisplay project={selectedProject!} />;
+        return <CropRecommender />;
     }
     // For other projects, show the generic display
     return <ProjectDisplay project={selectedProject!} />;
@@ -359,31 +372,44 @@ export default function AiPlayground({ selectedProject }: AiPlaygroundProps) {
           ) : selectedProject ? (
              <ProjectDisplay project={selectedProject} />
           ) : (
-            <div className="grid gap-8 md:grid-cols-1 lg:grid-cols-2">
-              {playgroundDemos.map((demo) => (
-                <Card key={demo.id} className="h-full bg-card border-accent/20 overflow-hidden tilt-card glow-accent shadow-2xl shadow-accent/10 flex flex-col">
+            <Tabs defaultValue="chat" className="w-full">
+              <TabsList className="grid w-full grid-cols-2">
+                <TabsTrigger value="chat">
+                    <BrainCircuit className="mr-2 h-5 w-5" />
+                    AI Chat
+                </TabsTrigger>
+                <TabsTrigger value="crop">
+                    <Leaf className="mr-2 h-5 w-5" />
+                    Crop Recommendation
+                </TabsTrigger>
+              </TabsList>
+              <TabsContent value="chat">
+                <PlaygroundChat />
+              </TabsContent>
+              <TabsContent value="crop">
+                 <Card className="h-full bg-card border-accent/20 overflow-hidden glow-accent shadow-2xl shadow-accent/10">
                   <CardHeader>
                     <div className="flex items-start gap-4">
                       <div className="bg-accent/20 p-3 rounded-full">
-                         <demo.Icon className="h-8 w-8 text-accent" />
+                         <Leaf className="h-8 w-8 text-accent" />
                       </div>
                       <div>
-                        <CardTitle className="text-2xl font-headline text-glow-accent">{demo.title}</CardTitle>
-                        <CardDescription className="pt-2">{demo.description}</CardDescription>
+                        <CardTitle className="text-2xl font-headline text-glow-accent">{playgroundDemos.crop.title}</CardTitle>
+                        <CardDescription className="pt-2">{playgroundDemos.crop.description}</CardDescription>
                       </div>
                     </div>
                   </CardHeader>
-                  <CardContent className="flex-grow flex flex-col">
-                    <div className="flex-grow">
-                     {demo.component}
-                    </div>
+                  <CardContent>
+                    <CropRecommender />
                   </CardContent>
                 </Card>
-              ))}
-            </div>
+              </TabsContent>
+            </Tabs>
           )}
         </div>
       </div>
     </section>
   );
 }
+
+    
