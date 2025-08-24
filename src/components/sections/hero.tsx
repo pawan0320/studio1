@@ -31,7 +31,7 @@ export default function HeroSection() {
           </div>
         </div>
         <div className="h-[400px] lg:h-[600px] w-full hidden lg:block">
-            {/* Right column can be used for a static image or be left empty */}
+            <spline-viewer url="https://prod.spline.design/h3Ws-VBARUkWGJqd/scene.splinecode"></spline-viewer>
         </div>
       </div>
     </section>
