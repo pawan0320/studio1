@@ -1,13 +1,12 @@
 import { FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import SplineWrapper from './spline-wrapper';
 
 export default function HeroSection() {
   return (
     <section id="hero" className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 bg-background" />
       
-      <div className="container mx-auto grid lg:grid-cols-2 gap-8 items-center relative z-10 px-4">
+      <div className="container mx-auto grid lg:grid-cols-1 gap-8 items-center relative z-10 px-4">
         <div className="text-center lg:text-left">
            <h1 className="font-headline text-5xl font-bold tracking-tighter text-glow-primary md:text-7xl lg:text-8xl">
             Pawan Sai Kodali
@@ -29,9 +28,6 @@ export default function HeroSection() {
               <a href="#contact">Get In Touch</a>
             </Button>
           </div>
-        </div>
-        <div className="relative h-[400px] lg:h-[600px] w-full hidden lg:block">
-          <SplineWrapper scene="https://prod.spline.design/h3Ws-VBARUkWGJqd/scene.splinecode" />
         </div>
       </div>
     </section>
