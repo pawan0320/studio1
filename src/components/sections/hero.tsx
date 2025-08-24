@@ -1,6 +1,7 @@
 
 import { FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import SplineWrapper from './spline-wrapper';
 
 export default function HeroSection() {
   return (
@@ -31,7 +32,7 @@ export default function HeroSection() {
           </div>
         </div>
         <div className="h-[400px] lg:h-[600px] w-full hidden lg:block">
-            
+            <SplineWrapper scene="https://prod.spline.design/h3Ws-VBARUkWGJqd/scene.splinecode" />
         </div>
       </div>
     </section>
