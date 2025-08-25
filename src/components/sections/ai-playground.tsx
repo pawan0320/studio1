@@ -3,7 +3,7 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Leaf, TestTube, BrainCircuit, Loader2, LineChart as LineChartIcon, FlaskConical } from "lucide-react";
+import { Leaf, TestTube, BrainCircuit, Loader2, LineChart as LineChartIcon, FlaskConical, HeartPulse } from "lucide-react";
 import { useState, useRef, useEffect, type FormEvent, useMemo } from 'react';
 import { getPortfolioAnswer } from "@/app/actions";
 import { useToast } from "@/hooks/use-toast";
@@ -18,6 +18,7 @@ import StockPredictionDemo from "./stock-prediction-demo";
 import SignLanguageDemo from "./sign-language-demo";
 import ProstheticControlDemo from "./prosthetic-control-demo";
 import DrugDiscoveryDemo from "./drug-discovery-demo";
+import MedicalBotDemo from "./medical-bot-demo";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 
@@ -350,11 +351,14 @@ export default function AiPlayground({ selectedProject }: AiPlaygroundProps) {
      if (projectId === 'drug-discovery') {
       return <DrugDiscoveryDemo />;
     }
+    if (projectId === 'ai-medical-bot') {
+      return <MedicalBotDemo />;
+    }
     // For other projects, show the generic display
     return <ProjectDisplay project={selectedProject!} />;
   };
   
-  const isProjectWithDemo = selectedProject?.id && ['brain-tumor', 'hand-gesture', 'crop-recommender', 'stock-prediction', 'sign-language', 'prosthetic-control', 'drug-discovery'].includes(selectedProject.id);
+  const isProjectWithDemo = selectedProject?.id && ['brain-tumor', 'hand-gesture', 'crop-recommender', 'stock-prediction', 'sign-language', 'prosthetic-control', 'drug-discovery', 'ai-medical-bot'].includes(selectedProject.id);
 
 
   return (
@@ -373,10 +377,14 @@ export default function AiPlayground({ selectedProject }: AiPlaygroundProps) {
              <ProjectDisplay project={selectedProject} />
           ) : (
             <Tabs defaultValue="chat" className="w-full">
-              <TabsList className="grid w-full grid-cols-4">
+              <TabsList className="grid w-full grid-cols-5">
                 <TabsTrigger value="chat">
                     <BrainCircuit className="mr-2 h-5 w-5" />
                     AI Chat
+                </TabsTrigger>
+                <TabsTrigger value="medical">
+                    <HeartPulse className="mr-2 h-5 w-5" />
+                    Medical Bot
                 </TabsTrigger>
                 <TabsTrigger value="crop">
                     <Leaf className="mr-2 h-5 w-5" />
@@ -393,6 +401,9 @@ export default function AiPlayground({ selectedProject }: AiPlaygroundProps) {
               </TabsList>
               <TabsContent value="chat">
                 <PlaygroundChat />
+              </TabsContent>
+               <TabsContent value="medical">
+                <MedicalBotDemo />
               </TabsContent>
               <TabsContent value="crop">
                  <Card className="h-full bg-card border-accent/20 overflow-hidden glow-accent shadow-2xl shadow-accent/10">

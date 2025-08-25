@@ -41,6 +41,16 @@ const projects: Project[] = [
     demoUrl: "#ai-playground",
   },
   {
+    id: "ai-medical-bot",
+    title: "AI Medical Assistant Bot",
+    description: "A modular FastAPI backend for an AI Medical Assistant, featuring NLP symptom checking, imaging analysis stubs, and more. Click to try a live demo!",
+    image: "https://placehold.co/600x400.png",
+    hint: "medical bot",
+    tags: ["Python", "FastAPI", "SQLAlchemy", "NLP", "Backend", "Genkit"],
+    githubUrl: "#",
+    demoUrl: "#ai-playground",
+  },
+  {
     id: "crop-recommender",
     title: "AI Crop Recommendation System",
     description: "A rule-based system that recommends the best crop to plant based on soil and environmental factors. Click to try the live demo!",

@@ -8,3 +8,4 @@ import '@/ai/flows/hand-gesture-flow.ts';
 import '@/ai/flows/stock-prediction-flow.ts';
 import '@/ai/flows/sign-language-flow.ts';
 import '@/ai/flows/drug-discovery-flow.ts';
+import '@/ai/flows/medical-symptom-flow.ts';
