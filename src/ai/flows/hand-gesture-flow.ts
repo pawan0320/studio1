@@ -22,8 +22,8 @@ const HandGestureInputSchema = z.object({
 export type HandGestureInput = z.infer<typeof HandGestureInputSchema>;
 
 const HandGestureOutputSchema = z.object({
-  handState: z.enum(["OPEN", "CLOSED", "UNKNOWN"]).describe("The state of the hand, whether it is open or closed."),
-  movement: z.string().describe("The direction of hand movement (e.g., UP, DOWN, LEFT, RIGHT, STILL)."),
+  handState: z.enum(["OPEN", "FIST", "POINT", "THUMBS UP", "VICTORY", "UNKNOWN"]).describe("The state of the hand, whether it is open, a fist, pointing, a thumbs up, or a victory sign."),
+  movement: z.string().describe("The direction and speed of hand movement (e.g., 'UP (FAST)', 'DOWN (SLOW)', 'STILL')."),
   wristX: z.number().describe("The current x-coordinate of the wrist."),
   wristY: z.number().describe("The current y-coordinate of the wrist."),
 });
@@ -40,14 +40,15 @@ const prompt = ai.definePrompt({
   prompt: `You are a highly accurate hand gesture and movement recognition AI.
 Your task is to analyze the provided image of a hand and determine its state and movement.
 
-1.  **Hand State**: Determine if the hand is 'OPEN' (all five fingers are visibly extended) or 'CLOSED' (fingers are curled into a fist). If you cannot determine the state, return 'UNKNOWN'.
+1.  **Hand State**: Determine the gesture. The possible gestures are 'OPEN' (all five fingers extended), 'FIST' (all fingers curled), 'POINT' (index finger extended), 'THUMBS UP', or 'VICTORY' (index and middle fingers extended). If you cannot determine the state, return 'UNKNOWN'.
 2.  **Wrist Position**: Identify the (x, y) coordinates of the center of the wrist in the image. The image is 640px wide and 480px high. Return the coordinates.
 3.  **Movement Detection**:
     - The previous wrist coordinates are provided as 'prevWristX' and 'prevWristY'.
     - Compare the current wrist coordinates (wristX, wristY) with the previous ones.
-    - A significant change (more than 20 pixels) in position indicates movement.
+    - A change of 20-50 pixels indicates slow movement. A change greater than 50 pixels indicates fast movement.
     - Determine the direction: 'UP', 'DOWN', 'LEFT', 'RIGHT'.
-    - If there is no significant change, the movement is 'STILL'.
+    - Append the speed: '(SLOW)' or '(FAST)'.
+    - If there is no significant change (less than 20 pixels), the movement is 'STILL'.
 
 Analyze this image:
 Image: {{media url=photoDataUri}}

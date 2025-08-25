@@ -154,9 +154,9 @@ export default function HandGestureDemo() {
         </div>
 
         {result ? (
-            <div className="p-4 bg-muted rounded-lg space-y-4 text-center animate-in fade-in-50">
+            <div className="grid grid-cols-2 gap-4 text-center p-4 bg-muted rounded-lg animate-in fade-in-50">
                 <div>
-                    <p className="text-sm text-muted-foreground">Hand State</p>
+                    <p className="text-sm text-muted-foreground">Gesture</p>
                     <p className="text-2xl font-bold capitalize text-accent text-glow-accent">{result.handState}</p>
                 </div>
                 <div>
