@@ -101,7 +101,7 @@ export default function AIChat() {
                     : 'bg-muted'
                 )}
               >
-                <p className="text-sm whitespace-pre-wrap">{msg.content}</p>
+                <p className="text-sm whitespace-pre-wrap break-words">{msg.content}</p>
               </div>
               {msg.role === 'user' && (
                  <div className="bg-muted p-2 rounded-full">

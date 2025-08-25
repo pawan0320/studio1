@@ -295,7 +295,7 @@ const PlaygroundChat = () => {
                 <div key={index} className={cn('flex items-start gap-3', msg.role === 'user' ? 'justify-end' : 'justify-start' )}>
                   {msg.role === 'assistant' && (<div className="bg-primary/20 p-2 rounded-full"><Bot className="h-6 w-6 text-primary" /></div>)}
                   <div className={cn('max-w-sm rounded-lg px-4 py-2', msg.role === 'user' ? 'bg-primary text-primary-foreground' : 'bg-muted' )}>
-                    <p className="text-sm whitespace-pre-wrap">{msg.content}</p>
+                    <p className="text-sm whitespace-pre-wrap break-words">{msg.content}</p>
                   </div>
                   {msg.role === 'user' && (<div className="bg-muted p-2 rounded-full"><User className="h-6 w-6" /></div>)}
                 </div>
