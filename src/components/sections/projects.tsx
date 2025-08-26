@@ -54,7 +54,7 @@ const projects: Project[] = [
     id: "crop-recommender",
     title: "AI Crop Recommendation System",
     description: "A rule-based system that recommends the best crop to plant based on soil and environmental factors. Click to try the live demo!",
-    image: "https://picsum.photos/600/400",
+    image: "https://olimpum.com/en/wp-content/uploads/WhatsApp-Image-2024-09-20-at-00.22.46.jpeg",
     hint: "agriculture farm",
     tags: ["AI", "Client-Side", "React", "Rule-Based"],
     githubUrl: "#",
