@@ -84,7 +84,7 @@ const projects: Project[] = [
     id: "prosthetic-control",
     title: "AI-Powered Prosthetic Control",
     description: "Developing an intuitive control system for prosthetic limbs using AI to interpret muscle signals, allowing for more natural and fluid movements.",
-    image: "https://picsum.photos/600/400",
+    image: "https://eu-images.contentstack.com/v3/assets/blt69509c9116440be8/blte98a09ea1e1267c3/66a40bc1786a4579d858867c/prosthetic_AlekseiGorodenkov-AlamyStockPhoto.jpg",
     hint: "prosthetic arm robotics",
     tags: ["AI", "Robotics", "Signal Processing", "Machine Learning"],
     githubUrl: "#",
