@@ -74,7 +74,7 @@ const projects: Project[] = [
     id: "sign-language",
     title: "Sign Language Recognition & Translation",
     description: "A mobile app that translates sign language into text and speech in real-time, built with React Native.",
-    image: "https://picsum.photos/600/400",
+    image: "https://cdn.prod.website-files.com/661e75fc70756be16764754b/667cbc954053c2836e32fcce_sign-language-recognition-app-featured.jpg",
     hint: "sign language mobile app",
     tags: ["AI", "Computer Vision", "React Native", "TensorFlow Lite"],
     githubUrl: "#",
