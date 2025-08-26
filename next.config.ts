@@ -83,6 +83,12 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'assets.skyfilabs.com',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
 };

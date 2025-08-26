@@ -114,7 +114,7 @@ const projects: Project[] = [
     id: "smart-home",
     title: "IoT Smart Home Automation",
     description: "A system to control and monitor home appliances remotely using IoT devices, built on Raspberry Pi.",
-    image: "https://picsum.photos/600/400",
+    image: "https://assets.skyfilabs.com/images/blog/gsm_based_home_automation_system_with_iot.webp",
     hint: "smart home",
     tags: ["IoT", "Raspberry Pi", "Python", "MQTT"],
     githubUrl: "#",
