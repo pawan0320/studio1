@@ -23,7 +23,7 @@ const projects: Project[] = [
     id: "brain-tumor",
     title: "Brain Tumor Detection using DenseNet",
     description: "An AI model that detects and classifies brain tumors from MRI scans with 99.2% accuracy. Click to try the live demo!",
-    image: "https://placehold.co/600x400.png",
+    image: "https://picsum.photos/600/400",
     hint: "brain mri",
     tags: ["AI", "Machine Learning", "TensorFlow", "Genkit"],
     githubUrl: "https://github.com/pawan0320/Brain-Tumor-Detection",
