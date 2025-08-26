@@ -124,7 +124,7 @@ const projects: Project[] = [
     id: "digital-twin",
     title: "Digital Twin Simulation",
     description: "Developed a digital replica of physical assets for real-time monitoring, analysis, and simulation.",
-    image: "https://picsum.photos/600/400",
+    image: "https://a.storyblok.com/f/122804/3334x2078/3721cf337e/digital-twin-system.webp",
     hint: "digital twin",
     tags: ["IoT", "Azure", "Simulation", "Data Analytics"],
     githubUrl: "#",
