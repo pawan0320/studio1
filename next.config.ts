@@ -40,6 +40,12 @@ const nextConfig: NextConfig = {
         hostname: 'bluewhaleapps.com',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.shutterstock.com',
+        port: '',
+        pathname: '/**',
       }
     ],
   },

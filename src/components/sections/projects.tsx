@@ -44,7 +44,7 @@ const projects: Project[] = [
     id: "ai-medical-bot",
     title: "AI Medical Assistant Bot",
     description: "A modular FastAPI backend for an AI Medical Assistant, featuring NLP symptom checking, imaging analysis stubs, and more. Click to try a live demo!",
-    image: "https://picsum.photos/600/400",
+    image: "https://www.shutterstock.com/image-photo/person-using-smartphone-interact-friendly-600nw-2482428287.jpg",
     hint: "medical bot",
     tags: ["Python", "FastAPI", "SQLAlchemy", "NLP", "Backend", "Genkit"],
     githubUrl: "#",
