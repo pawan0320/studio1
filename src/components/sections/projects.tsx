@@ -104,7 +104,7 @@ const projects: Project[] = [
     id: "coffee-shop",
     title: "Brewed Awakening Coffee Shop Website",
     description: "A modern and responsive website for a local coffee shop, featuring a menu, gallery, and contact information.",
-    image: "https://picsum.photos/600/400",
+    image: "https://images.squarespace-cdn.com/content/v1/61e4737d45023e1d23e385cd/1661869404410-8HGFYA51EQVH7DE7RVZM/image-asset.jpeg",
     hint: "coffee shop",
     tags: ["HTML", "CSS"],
     githubUrl: "#",
