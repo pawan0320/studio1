@@ -52,6 +52,12 @@ const nextConfig: NextConfig = {
         hostname: 'olimpum.com',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'miro.medium.com',
+        port: '',
+        pathname: '/**',
       }
     ],
   },

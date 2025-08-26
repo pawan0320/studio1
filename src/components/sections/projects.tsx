@@ -64,7 +64,7 @@ const projects: Project[] = [
     id: "stock-prediction",
     title: "Live Stock Price Prediction",
     description: "An LSTM model to predict stock prices based on historical data. Showcases time-series analysis.",
-    image: "https://picsum.photos/600/400",
+    image: "https://miro.medium.com/v2/resize:fit:1400/0*kO2Y2Hv2fpuNPcrk",
     hint: "stock market chart",
     tags: ["AI", "Machine Learning", "LSTM", "TensorFlow"],
     githubUrl: "#",
