@@ -94,7 +94,7 @@ const projects: Project[] = [
     id: "drug-discovery",
     title: "Drug Discovery with Deep Learning",
     description: "Utilizing deep learning models to predict molecular properties and identify potential drug candidates, accelerating the discovery process.",
-    image: "https://picsum.photos/600/400",
+    image: "https://img-c.udemycdn.com/course/750x422/4259064_04b2.jpg",
     hint: "molecule drug discovery",
     tags: ["AI", "Deep Learning", "Bioinformatics", "PyTorch"],
     githubUrl: "#",
