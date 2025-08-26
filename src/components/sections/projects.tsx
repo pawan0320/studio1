@@ -33,7 +33,7 @@ const projects: Project[] = [
     id: "hand-gesture",
     title: "Hand Gesture & Movement Recognition for Human-Computer Interaction",
     description: "A system that recognizes hand gestures and movements to provide a natural way to interact with computers. Click for a live demo!",
-    image: "https://picsum.photos/600/400",
+    image: "https://bluewhaleapps.com/wp-content/uploads/2019/08/Guesture-recognition-technology-blog-feature-image.jpg",
     hint: "hand gesture recognition",
     tags: ["AI", "Computer Vision", "OpenCV", "Python", "Genkit"],
     githubUrl: "#",
